@@ -49,12 +49,12 @@
     - 安全かつ効率的なコーディング（特に NPE 対策）のため
 - coroutine
     - メインスレッドをブロックしない処理（通信/DB アクセス）を実装するため
-- kotlinx.serialization
-    - 通信時の JSON を処理するため
 - okhttp3
     - API 通信のため
 - retrofit2
     - API 通信のため
+- Moshi
+    - JSON ハンドリングのため
 - Room
     - DB アクセスのため
 - ViewBinding
