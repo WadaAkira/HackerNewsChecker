@@ -57,6 +57,8 @@
     - API 通信のため
 - Room
     - DB アクセスのため
+- ViewBinding
+    - Kotlin Android Extensions が非推奨になったため
 
 ## 開発環境
 

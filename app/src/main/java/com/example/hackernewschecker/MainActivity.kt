@@ -2,6 +2,7 @@ package com.example.hackernewschecker
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.hackernewschecker.databinding.MainActivityBinding
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
@@ -10,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
  * WebView は別アクティビティとして実装する
  */
 class MainActivity: AppCompatActivity() {
+    private lateinit var binding: MainActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
