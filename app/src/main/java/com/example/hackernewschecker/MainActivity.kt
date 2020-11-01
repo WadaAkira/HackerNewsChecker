@@ -3,6 +3,7 @@ package com.example.hackernewschecker
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hackernewschecker.databinding.MainActivityBinding
+import com.example.hackernewschecker.main.MainFragment
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
@@ -17,5 +18,14 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Toolbar の設定
+        binding.toolbar.title = getString(R.string.app_name)
+
+        // MainFragment の設定
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, MainFragment.newInstance())
+            .commit()
     }
 }
