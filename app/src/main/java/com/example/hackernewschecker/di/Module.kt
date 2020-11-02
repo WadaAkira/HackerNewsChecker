@@ -1,5 +1,7 @@
 package com.example.hackernewschecker.di
 
+import com.example.hackernewschecker.main.MainContract
+import com.example.hackernewschecker.main.MainPresenter
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
 import com.example.hackernewschecker.usecase.repository.Repository
@@ -49,6 +51,12 @@ class Module {
     @Provides
     fun provideHackerNewsUseCase(repository: Repository): HackerNewsUseCase {
         return HackerNewsUseCaseImpl(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter {
+        return presenter
     }
 
     // okHttpClient を作成する
