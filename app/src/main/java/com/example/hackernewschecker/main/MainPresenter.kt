@@ -37,8 +37,10 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
                 val newsIdList = useCase.loadCurrentNewsIdList()
 
                 if (newsIdList.isEmpty()) {
-                    view.hideLoading()
-                    view.showError(IllegalStateException("Current stories are not found."))
+                    withContext(Dispatchers.Main) {
+                        view.hideLoading()
+                        view.showError(IllegalStateException("Current stories are not found."))
+                    }
                 } else {
                     loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
                 }
@@ -55,8 +57,10 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
                     async { useCase.loadNews(newsId) }
                 }.awaitAll()
 
-                view.hideLoading()
-                view.showNewsList(responseList)
+                withContext(Dispatchers.Main) {
+                    view.hideLoading()
+                    view.showNewsList(responseList)
+                }
             }
         }
         jobList.add(job)

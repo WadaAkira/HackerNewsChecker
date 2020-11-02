@@ -23,6 +23,9 @@ class MainFragment : Fragment(), MainContract.View {
     @Inject
     internal lateinit var presenter: MainContract.Presenter
 
+    @Inject
+    internal lateinit var adapter: MainAdapter
+
     companion object {
         /**
          * フラグメントを生成する
@@ -55,6 +58,12 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // RecyclerView とイベントハンドリングの実装
+        binding.recyclerView.adapter = adapter
+        adapter.newsCallback = { url ->
+            presenter.openNewsSite(url)
+        }
+
         presenter.loadPage()
     }
 
@@ -75,6 +84,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showNewsList(newsList: List<News>) {
+        adapter.setNewsList(newsList)
         Log.d("wada", "show news list")
     }
 
