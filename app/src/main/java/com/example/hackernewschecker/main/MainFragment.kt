@@ -79,11 +79,11 @@ class MainFragment : Fragment(), MainContract.View {
 
     // 以下、View 実装
     override fun showLoading() {
-        //binding.progress.visibility = View.VISIBLE
+        binding.progress.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        //binding.progress.visibility = View.GONE
+        binding.progress.visibility = View.GONE
     }
 
     override fun showNewsList(newsList: List<News>) {
