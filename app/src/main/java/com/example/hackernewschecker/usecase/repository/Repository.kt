@@ -1,7 +1,6 @@
 package com.example.hackernewschecker.usecase.repository
 
 import com.example.hackernewschecker.usecase.response.News
-import retrofit2.Call
 
 /**
  * アプリのデータアクセスを一元管理する
@@ -12,7 +11,7 @@ interface Repository {
      *
      * @return Hacker News の id のリスト
      */
-    suspend fun loadCurrentNewsIdList(): Call<List<Int>>
+    suspend fun loadCurrentNewsIdList(): List<Int>
 
     /**
      * Hacker News の要約を一件読み込む

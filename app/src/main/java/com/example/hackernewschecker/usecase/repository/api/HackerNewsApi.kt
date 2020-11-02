@@ -1,7 +1,6 @@
 package com.example.hackernewschecker.usecase.repository.api
 
 import com.example.hackernewschecker.usecase.response.News
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -10,7 +9,7 @@ import retrofit2.http.Path
  */
 interface HackerNewsApi {
     @GET("topstories.json")
-    fun loadCurrentNewsIdList(): Call<List<Int>>
+    suspend fun loadCurrentNewsIdList(): List<Int>
 
     @GET("item/{newsId}.json")
     suspend fun loadNews(@Path("newsId") newsId: Int): News

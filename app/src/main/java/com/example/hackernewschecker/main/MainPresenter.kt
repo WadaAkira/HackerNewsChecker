@@ -1,14 +1,13 @@
 package com.example.hackernewschecker.main
 
+import android.util.Log
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class MainPresenter @Inject constructor(val useCase: HackerNewsUseCase) : MainContract.Presenter,
+class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) :
+    MainContract.Presenter,
     CoroutineScope {
 
     companion object {
@@ -30,22 +29,15 @@ class MainPresenter @Inject constructor(val useCase: HackerNewsUseCase) : MainCo
             view.showLoading()
 
             withContext(Dispatchers.IO) {
-                useCase.loadCurrentNewsIdList().enqueue(object : Callback<List<Int>> {
-                    override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
-                        val newsIdList = response.body() ?: return
-                        if (newsIdList.isEmpty()) {
-                            view.hideLoading()
-                            view.showError(IllegalStateException("Current stories are not found."))
-                            return
-                        }
-                        loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
-                    }
+                val newsIdList = useCase.loadCurrentNewsIdList()
 
-                    override fun onFailure(call: Call<List<Int>>, t: Throwable) {
-                        view.hideLoading()
-                        view.showError(t)
-                    }
-                })
+                if (newsIdList.isEmpty()) {
+                    view.hideLoading()
+                    view.showError(IllegalStateException("Current stories are not found."))
+                } else {
+                    Log.d("wada", newsIdList.take(10).toString())
+                    loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
+                }
             }
         }
         jobList.add(job)

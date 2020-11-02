@@ -1,7 +1,6 @@
 package com.example.hackernewschecker.usecase
 
 import com.example.hackernewschecker.usecase.response.News
-import retrofit2.Call
 
 /**
  * HackerNews API と通信するユースケース
@@ -12,7 +11,7 @@ interface HackerNewsUseCase {
      *
      * @return Hacker News の id のリスト
      */
-    suspend fun loadCurrentNewsIdList(): Call<List<Int>>
+    suspend fun loadCurrentNewsIdList(): List<Int>
 
     /**
      * Hacker News の詳細情報を取得する
