@@ -15,6 +15,10 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
 
     private lateinit var view: MainContract.View
 
+    // ロードネクストの制御
+    private var newsIdList: List<Int> = emptyList()
+    private var loadCount = 0
+
     // コルーチンの制御
     private val jobList = mutableListOf<Job>()
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -34,7 +38,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
             view.showLoading()
 
             withContext(Dispatchers.IO) {
-                val newsIdList = useCase.loadCurrentNewsIdList()
+                newsIdList = useCase.loadCurrentNewsIdList()
 
                 if (newsIdList.isEmpty()) {
                     withContext(Dispatchers.Main) {
@@ -49,6 +53,22 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         jobList.add(job)
     }
 
+    override fun loadNext() {
+        // ロードネクストできるか判定
+        val firstIndex = loadCount * CURRENT_NEWS_TAKE_VALUE
+        if (newsIdList.size <= firstIndex) {
+            return
+        }
+
+        val lastIndex = if (newsIdList.size <= firstIndex + CURRENT_NEWS_TAKE_VALUE) {
+            newsIdList.size
+        } else {
+            firstIndex + CURRENT_NEWS_TAKE_VALUE
+        }
+
+        loadNews(newsIdList.subList(firstIndex, lastIndex))
+    }
+
     // Hacker News Id にひもづく記事を取得する
     private fun loadNews(newsIdList: List<Int>) {
         val job = launch(exceptionHandler) {
@@ -58,6 +78,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
                 }.awaitAll()
 
                 withContext(Dispatchers.Main) {
+                    loadCount++
                     view.hideLoading()
                     view.showNewsList(responseList)
                 }

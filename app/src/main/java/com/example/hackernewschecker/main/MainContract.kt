@@ -23,6 +23,11 @@ interface MainContract {
         fun loadPage()
 
         /**
+         * ロードネクストを実行する
+         */
+        fun loadNext()
+
+        /**
          * Hacker News の詳細ページを開く
          */
         fun openNewsSite(url: String)
