@@ -4,8 +4,9 @@ import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.domain.News
 import com.example.hackernewschecker.usecase.repository.Repository
 import retrofit2.Call
+import javax.inject.Inject
 
-class HackerNewsUseCaseImpl constructor(private val repository: Repository) : HackerNewsUseCase {
+class HackerNewsUseCaseImpl @Inject constructor(private val repository: Repository) : HackerNewsUseCase {
     override suspend fun loadCurrentNewsIdList(): Call<List<Int>> {
         return repository.loadCurrentNewsIdList()
     }

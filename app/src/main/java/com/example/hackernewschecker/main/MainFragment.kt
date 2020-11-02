@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.MainFragmentBinding
+import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -21,6 +23,9 @@ class MainFragment : Fragment(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
+    @Inject
+    internal lateinit var usecase: HackerNewsUseCase
+
     companion object {
         /**
          * フラグメントを生成する
@@ -31,9 +36,9 @@ class MainFragment : Fragment(), CoroutineScope {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
