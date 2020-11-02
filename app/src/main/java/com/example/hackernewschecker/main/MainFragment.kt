@@ -86,10 +86,10 @@ class MainFragment : Fragment(), MainContract.View {
         binding.progress.visibility = View.GONE
     }
 
-    override fun showNewsList(newsList: List<News>) {
+    override fun showNews(news: News) {
         //binding.errorMsg.visibility = View.GONE
-        adapter.setNewsList(newsList)
-        Log.d("wada", "show news list")
+        adapter.setNews(news)
+        Log.d("wada", "set news")
     }
 
     override fun transitNewsSite(url: String) {
