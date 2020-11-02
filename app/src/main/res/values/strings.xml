@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hacker News Checker</string>
+    <string name="error_main_api">通信に失敗しました。再度通信する場合はこちらをタップしてください。</string>
 </resources>

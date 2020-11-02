@@ -60,6 +60,9 @@ class MainFragment : Fragment(), MainContract.View {
 
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.adapter = adapter
+//        binding.errorMsg.setOnClickListener {
+//            presenter.loadPage()
+//        }
         adapter.newsCallback = { url ->
             presenter.openNewsSite(url)
         }
@@ -76,14 +79,15 @@ class MainFragment : Fragment(), MainContract.View {
 
     // 以下、View 実装
     override fun showLoading() {
-        Log.d("wada", "show loading")
+        //binding.progress.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        Log.d("wada", "hide loading")
+        //binding.progress.visibility = View.GONE
     }
 
     override fun showNewsList(newsList: List<News>) {
+        //binding.errorMsg.visibility = View.GONE
         adapter.setNewsList(newsList)
         Log.d("wada", "show news list")
     }
@@ -93,6 +97,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showError(throwable: Throwable) {
+        //binding.errorMsg.visibility = View.VISIBLE
         Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
     }
     // View 実装ここまで
