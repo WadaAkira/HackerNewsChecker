@@ -11,7 +11,7 @@ import javax.inject.Inject
  * 起動時画面の RecyclerView のアダプタ
  */
 class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>() {
-    private val newsList: MutableList<News> = mutableListOf()
+    private var newsList: List<News> = emptyList()
 
     // Hacker News タップ時のコールバック
     internal var newsCallback: (String) -> Unit = { _ -> }
@@ -30,8 +30,8 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>()
         return newsList.size
     }
 
-    fun setNews(news: News) {
-        this.newsList += news
+    fun setNewsList(newsList: List<News>) {
+        this.newsList = newsList
         notifyDataSetChanged()
     }
 }

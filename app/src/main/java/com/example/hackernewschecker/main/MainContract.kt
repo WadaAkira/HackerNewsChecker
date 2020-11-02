@@ -50,9 +50,9 @@ interface MainContract {
         /**
          * Hacker News を表示する
          *
-         * @param news 表示する Hacker News
+         * @param newsList 表示する Hacker News のリスト
          */
-        fun showNews(news: News)
+        fun showNewsList(newsList: List<News>)
 
         /**
          * Hacker News の対象ページを表示する

@@ -52,12 +52,14 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     // Hacker News Id にひもづく記事を取得する
     private fun loadNews(newsIdList: List<Int>) {
         val job = launch(exceptionHandler) {
-            newsIdList.forEach { newsId ->
-                withContext(Dispatchers.IO) {
-                    val news = useCase.loadNews(newsId)
-                    withContext(Dispatchers.Main) {
-                        view.showNews(news)
-                    }
+            withContext(Dispatchers.IO) {
+                val responseList = newsIdList.map { newsId ->
+                    async { useCase.loadNews(newsId) }
+                }.awaitAll()
+
+                withContext(Dispatchers.Main) {
+                    view.hideLoading()
+                    view.showNewsList(responseList)
                 }
             }
         }
