@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.main
 
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.usecase.response.News
 
 /**
  * 起動画面の実装規約

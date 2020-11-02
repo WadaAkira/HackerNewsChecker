@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.usecase
 
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.usecase.response.News
 import retrofit2.Call
 
 /**
@@ -20,5 +20,5 @@ interface HackerNewsUseCase {
      * @param newsId Hacker News の id
      * @return id にひもづく記事の詳細
      */
-    suspend fun loadNews(newsId: Int): Call<News>
+    suspend fun loadNews(newsId: Int): News
 }

@@ -1,6 +1,5 @@
 package com.example.hackernewschecker.main
 
-import android.util.Log
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import kotlinx.coroutines.*
 import retrofit2.Call
@@ -54,7 +53,12 @@ class MainPresenter @Inject constructor(val useCase: HackerNewsUseCase) : MainCo
 
     // Hacker News Id にひもづく記事を取得する
     private fun loadNews(newsIdList: List<Int>) {
-        Log.d("wada", newsIdList.toString())
+        val job = launch {
+            withContext(Dispatchers.IO) {
+                val response = useCase.loadNews(newsIdList[0])
+            }
+        }
+        jobList.add(job)
     }
 
     override fun openNewsSite(url: String) {

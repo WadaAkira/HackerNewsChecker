@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.databinding.MainFragmentBinding
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.usecase.response.News
 import javax.inject.Inject
 
 /**
