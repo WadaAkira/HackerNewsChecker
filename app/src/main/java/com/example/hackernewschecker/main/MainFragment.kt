@@ -60,6 +60,8 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        presenter.stop()
         _binding = null
     }
 
@@ -83,6 +85,5 @@ class MainFragment : Fragment(), MainContract.View {
     override fun showError(throwable: Throwable) {
         Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
     }
-
     // View 実装ここまで
 }

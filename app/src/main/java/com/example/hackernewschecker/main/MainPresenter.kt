@@ -14,7 +14,13 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     }
 
     private lateinit var view: MainContract.View
+
+    // コルーチンの制御
     private val jobList = mutableListOf<Job>()
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        view.hideLoading()
+        view.showError(throwable)
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
@@ -24,7 +30,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     }
 
     override fun loadPage() {
-        val job = launch {
+        val job = launch(exceptionHandler) {
             view.showLoading()
 
             withContext(Dispatchers.IO) {
@@ -43,7 +49,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
 
     // Hacker News Id にひもづく記事を取得する
     private fun loadNews(newsIdList: List<Int>) {
-        val job = launch {
+        val job = launch(exceptionHandler) {
             withContext(Dispatchers.IO) {
                 val responseList = newsIdList.map { newsId ->
                     async { useCase.loadNews(newsId) }
