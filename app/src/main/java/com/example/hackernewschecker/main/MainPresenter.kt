@@ -1,19 +1,60 @@
 package com.example.hackernewschecker.main
 
+import android.util.Log
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class MainPresenter @Inject constructor(val useCase: HackerNewsUseCase) : MainContract.Presenter {
+class MainPresenter @Inject constructor(val useCase: HackerNewsUseCase) : MainContract.Presenter,
+    CoroutineScope {
+
+    companion object {
+        private const val CURRENT_NEWS_TAKE_VALUE = 30
+    }
+
     private lateinit var view: MainContract.View
     private val jobList = mutableListOf<Job>()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
 
     override fun setup(view: MainContract.View) {
         this.view = view
     }
 
     override fun loadPage() {
-        TODO("Not yet implemented")
+        val job = launch {
+            view.showLoading()
+
+            withContext(Dispatchers.IO) {
+                useCase.loadCurrentNewsIdList().enqueue(object : Callback<List<Int>> {
+                    override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
+                        val newsIdList = response.body() ?: return
+                        if (newsIdList.isEmpty()) {
+                            view.hideLoading()
+                            view.showError(IllegalStateException("Current stories are not found."))
+                            return
+                        }
+                        loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
+                    }
+
+                    override fun onFailure(call: Call<List<Int>>, t: Throwable) {
+                        view.hideLoading()
+                        view.showError(t)
+                    }
+                })
+            }
+        }
+        jobList.add(job)
+    }
+
+    // Hacker News Id にひもづく記事を取得する
+    private fun loadNews(newsIdList: List<Int>) {
+        Log.d("wada", newsIdList.toString())
     }
 
     override fun openNewsSite(url: String) {

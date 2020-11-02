@@ -60,5 +60,12 @@ interface MainContract {
          * @param url 表示する Web サイトの URL
          */
         fun transitNewsSite(url: String)
+
+        /**
+         * エラーメッセージを表示する
+         *
+         * @param throwable 例外
+         */
+        fun showError(throwable: Throwable)
     }
 }

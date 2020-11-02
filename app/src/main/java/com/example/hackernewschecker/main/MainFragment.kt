@@ -54,6 +54,8 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        presenter.loadPage()
     }
 
     override fun onDestroyView() {
@@ -77,5 +79,10 @@ class MainFragment : Fragment(), MainContract.View {
     override fun transitNewsSite(url: String) {
         Log.d("wada", "transit site")
     }
+
+    override fun showError(throwable: Throwable) {
+        Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
+    }
+
     // View 実装ここまで
 }
