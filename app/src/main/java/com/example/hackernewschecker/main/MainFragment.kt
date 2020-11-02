@@ -61,6 +61,7 @@ class MainFragment : Fragment(), MainContract.View {
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.adapter = adapter
         binding.errorMsg.setOnClickListener {
+            adapter.clearNewsList()
             presenter.loadPage()
         }
         adapter.newsCallback = { url ->
@@ -80,6 +81,7 @@ class MainFragment : Fragment(), MainContract.View {
     // 以下、View 実装
     override fun showLoading() {
         binding.progress.visibility = View.VISIBLE
+        binding.errorMsg.visibility = View.GONE
     }
 
     override fun hideLoading() {

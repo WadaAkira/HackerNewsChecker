@@ -34,6 +34,9 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     }
 
     override fun loadPage() {
+        // 通信失敗時のリトライに備え、リストを空にしておく
+        newsIdList = emptyList()
+
         val job = launch(exceptionHandler) {
             view.showLoading()
 
