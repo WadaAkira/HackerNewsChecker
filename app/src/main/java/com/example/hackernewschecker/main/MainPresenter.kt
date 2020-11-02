@@ -1,6 +1,5 @@
 package com.example.hackernewschecker.main
 
-import android.util.Log
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -35,7 +34,6 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
                     view.hideLoading()
                     view.showError(IllegalStateException("Current stories are not found."))
                 } else {
-                    Log.d("wada", newsIdList.take(10).toString())
                     loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
                 }
             }
@@ -47,7 +45,12 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     private fun loadNews(newsIdList: List<Int>) {
         val job = launch {
             withContext(Dispatchers.IO) {
-                val response = useCase.loadNews(newsIdList[0])
+                val responseList = newsIdList.map { newsId ->
+                    async { useCase.loadNews(newsId) }
+                }.awaitAll()
+
+                view.hideLoading()
+                view.showNewsList(responseList)
             }
         }
         jobList.add(job)
