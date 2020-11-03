@@ -1,10 +1,13 @@
 package com.example.hackernewschecker.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
 import com.example.hackernewschecker.usecase.repository.Repository
+import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
 import com.example.hackernewschecker.usecase.repository.impl.RepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -21,10 +24,22 @@ import javax.inject.Singleton
  * DI するクラスを定義する
  */
 @Module
-class Module {
+class HackerNewsCheckerModule(applicationContext: Context) {
     companion object {
         private const val HACKER_NEWS_API_BASE_URL = "https://hacker-news.firebaseio.com/v0/"
         private const val TIMEOUT_SECOND = 30L
+    }
+
+    private val database = Room.databaseBuilder(
+        applicationContext,
+        HackerNewsDatabase::class.java,
+        "hacker_news_database"
+    ).build()
+
+    @Singleton
+    @Provides
+    fun provideDatabase(): HackerNewsDatabase {
+        return database
     }
 
     @Singleton

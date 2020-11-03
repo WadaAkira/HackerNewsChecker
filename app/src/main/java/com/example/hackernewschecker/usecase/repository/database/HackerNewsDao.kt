@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.usecase.database
+package com.example.hackernewschecker.usecase.repository.database
 
 import androidx.room.*
 import com.example.hackernewschecker.usecase.domain.News

@@ -1,37 +1,24 @@
 package com.example.hackernewschecker
 
 import android.app.Application
-import androidx.room.Room
-import com.example.hackernewschecker.di.AppComponent
-import com.example.hackernewschecker.di.DaggerAppComponent
-import com.example.hackernewschecker.di.Module
-import com.example.hackernewschecker.usecase.database.HackerNewsDatabase
+import com.example.hackernewschecker.di.DaggerHackerNewsCheckerComponent
+import com.example.hackernewschecker.di.HackerNewsCheckerComponent
+import com.example.hackernewschecker.di.HackerNewsCheckerModule
 
 /**
  * アプリ共通の機能（DI）を提供するアプリケーションクラス
  */
 class HackerNewsCheckerApplication : Application() {
-    private lateinit var _appComponent: AppComponent
-    internal val appComponent: AppComponent
+    private lateinit var _appComponent: HackerNewsCheckerComponent
+    internal val appComponent: HackerNewsCheckerComponent
         get() = _appComponent
-
-    private lateinit var _database: HackerNewsDatabase
-    internal val database: HackerNewsDatabase
-        get() = _database
 
     override fun onCreate() {
         super.onCreate()
 
         // DI Component のセットアップ
-        _appComponent = DaggerAppComponent.builder()
-            .module(Module())
+        _appComponent = DaggerHackerNewsCheckerComponent.builder()
+            .hackerNewsCheckerModule(HackerNewsCheckerModule(this))
             .build()
-
-        // Database のセットアップ
-        _database = Room.databaseBuilder(
-            this,
-            HackerNewsDatabase::class.java,
-            "hacker_news_database"
-        ).build()
     }
 }
