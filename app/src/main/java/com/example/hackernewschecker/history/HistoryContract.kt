@@ -77,8 +77,22 @@ interface HistoryContract {
         fun showNoneHistory()
 
         /**
-         * 履歴削除完了をトーストで通知する
+         * 履歴の削除を表示に反映する
          */
-        fun showDeletedHistoryToast()
+        fun showToDeleteHistory()
+
+        /**
+         * 履歴の取得に失敗したことを表示する
+         *
+         * @param throwable 例外
+         */
+        fun showError(throwable: Throwable)
+
+        /**
+         * 外部ブラウザの表示に失敗したことをトーストで通知する
+         *
+         * @param throwable 例外
+         */
+        fun showErrorToast(throwable: Throwable)
     }
 }
