@@ -1,5 +1,7 @@
 package com.example.hackernewschecker
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hackernewschecker.databinding.MainActivityBinding
@@ -11,7 +13,7 @@ import com.example.hackernewschecker.main.MainFragment
  *
  * WebView は別アクティビティとして実装する
  */
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,5 +29,14 @@ class MainActivity: AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.container, MainFragment.newInstance())
             .commit()
+    }
+
+    /**
+     * 外部ブラウザを起動する
+     *
+     * @param url 開く URL
+     */
+    fun startWebBrowser(url: Uri) {
+        startActivity(Intent(Intent.ACTION_VIEW, url))
     }
 }

@@ -1,15 +1,20 @@
 package com.example.hackernewschecker.main
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerApplication
+import com.example.hackernewschecker.MainActivity
+import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainFragmentBinding
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 import javax.inject.Inject
 
 /**
@@ -59,14 +64,18 @@ class MainFragment : Fragment(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         // RecyclerView とイベントハンドリングの実装
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.addItemDecoration(MainDecoration())
+        binding.recyclerView.also {
+            it.adapter = adapter
+            it.addItemDecoration(MainDecoration())
+            it.addOnScrollListener(ScrollListener())
+        }
+
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()
             presenter.loadPage()
         }
-        adapter.newsCallback = { url ->
-            presenter.openNewsSite(url)
+        adapter.newsCallback = { news ->
+            presenter.openNewsSite(news)
         }
 
         presenter.loadPage()
@@ -92,16 +101,33 @@ class MainFragment : Fragment(), MainContract.View {
     override fun showNewsList(newsList: List<News>) {
         binding.errorMsg.visibility = View.GONE
         adapter.setNewsList(newsList)
-        Log.d("wada", "show news list")
     }
 
-    override fun transitNewsSite(url: String) {
-        Log.d("wada", "transit site")
+    override fun transitNewsSite(url: Uri) {
+        (activity as? MainActivity)?.startWebBrowser(url)
     }
 
     override fun showError(throwable: Throwable) {
         binding.errorMsg.visibility = View.VISIBLE
         Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
     }
+
+    override fun showErrorToast(throwable: Throwable) {
+        val context = context ?: return
+        Toast.makeText(context, R.string.error_invalid_url, Toast.LENGTH_SHORT).show()
+        Log.e("HackerNewsChecker", "Failed to open web site. ${throwable.message}")
+    }
     // View 実装ここまで
+
+    // RecyclerView のスクロール検出用のリスナー実装
+    inner class ScrollListener : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            if (!recyclerView.canScrollVertically(1)) {
+                presenter.loadNext()
+            }
+        }
+    }
+    // RecyclerView のスクロール検出用のリスナー実装ここまで
 }

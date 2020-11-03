@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.databinding.MainViewholderBinding
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 import javax.inject.Inject
 
 /**
@@ -14,7 +14,7 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>()
     private val newsList: MutableList<News> = mutableListOf()
 
     // Hacker News タップ時のコールバック
-    internal var newsCallback: (String) -> Unit = { _ -> }
+    internal var newsCallback: (News) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(

@@ -8,8 +8,8 @@ import javax.inject.Singleton
  */
 @Singleton
 @dagger.Component(
-    modules = [Module::class]
+    modules = [HackerNewsCheckerModule::class]
 )
-interface AppComponent {
+interface HackerNewsCheckerComponent {
     fun inject(fragment: MainFragment)
 }

@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.usecase.repository
 
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * アプリのデータアクセスを一元管理する
@@ -20,4 +20,12 @@ interface Repository {
      * @return 読み込んだ Hacker News の情報
      */
     suspend fun loadNews(newsId: Int): News
+
+    /**
+     * Hacker News を一件保存する<br>
+     * 同じ id の Hacker News は上書きされる
+     *
+     * @param news 保存する Hacker News
+     */
+    suspend fun insertNews(news: News)
 }

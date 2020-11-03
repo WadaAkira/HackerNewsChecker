@@ -1,6 +1,7 @@
 package com.example.hackernewschecker.main
 
-import com.example.hackernewschecker.usecase.response.News
+import android.net.Uri
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * 起動画面の実装規約
@@ -29,8 +30,10 @@ interface MainContract {
 
         /**
          * Hacker News の詳細ページを開く
+         *
+         * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(url: String)
+        fun openNewsSite(news: News)
 
         /**
          * プレゼンターの処理を解放する
@@ -64,7 +67,7 @@ interface MainContract {
          *
          * @param url 表示する Web サイトの URL
          */
-        fun transitNewsSite(url: String)
+        fun transitNewsSite(url: Uri)
 
         /**
          * エラーメッセージを表示する
@@ -72,5 +75,12 @@ interface MainContract {
          * @param throwable 例外
          */
         fun showError(throwable: Throwable)
+
+        /**
+         * エラーメッセージをトーストで表示する
+         *
+         * @param throwable 例外
+         */
+        fun showErrorToast(throwable: Throwable)
     }
 }

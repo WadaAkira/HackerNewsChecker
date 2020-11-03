@@ -3,7 +3,7 @@ package com.example.hackernewschecker.main
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainViewholderBinding
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * Hacker News 一つ分の表示
@@ -11,17 +11,19 @@ import com.example.hackernewschecker.usecase.response.News
 class MainViewHolder(private val binding: MainViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(news: News, callback: (String) -> Unit) {
+    fun bind(news: News, callback: (News) -> Unit) {
         // 表示を制御
         val context = itemView.context
-        binding.title.text = news.title
-        binding.author.text = news.by
-        binding.points.text = context.getString(R.string.score, news.score)
-        binding.comments.text = context.getString(R.string.comments, news.descendants)
+        binding.also {
+            it.title.text = news.title
+            it.author.text = news.by
+            it.points.text = context.getString(R.string.score, news.score)
+            it.comments.text = context.getString(R.string.comments, news.descendants ?: 0)
 
-        // コールバックの設定
-        binding.root.setOnClickListener {
-            callback(news.url ?: "")
+            // コールバックの設定
+            it.root.setOnClickListener {
+                callback(news)
+            }
         }
     }
 }
