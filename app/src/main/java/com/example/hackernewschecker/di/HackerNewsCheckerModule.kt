@@ -58,8 +58,8 @@ class HackerNewsCheckerModule(applicationContext: Context) {
 
     @Singleton
     @Provides
-    fun provideRepository(retrofit: Retrofit): Repository {
-        return RepositoryImpl(retrofit)
+    fun provideRepository(database: HackerNewsDatabase, retrofit: Retrofit): Repository {
+        return RepositoryImpl(database, retrofit)
     }
 
     @Singleton
