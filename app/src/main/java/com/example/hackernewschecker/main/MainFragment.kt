@@ -23,6 +23,9 @@ class MainFragment : Fragment(), MainContract.View {
     @Inject
     internal lateinit var presenter: MainContract.Presenter
 
+    @Inject
+    internal lateinit var adapter: MainAdapter
+
     companion object {
         /**
          * フラグメントを生成する
@@ -55,6 +58,17 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // RecyclerView とイベントハンドリングの実装
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.addItemDecoration(MainDecoration())
+        binding.errorMsg.setOnClickListener {
+            adapter.clearNewsList()
+            presenter.loadPage()
+        }
+        adapter.newsCallback = { url ->
+            presenter.openNewsSite(url)
+        }
+
         presenter.loadPage()
     }
 
@@ -67,14 +81,17 @@ class MainFragment : Fragment(), MainContract.View {
 
     // 以下、View 実装
     override fun showLoading() {
-        Log.d("wada", "show loading")
+        binding.progress.visibility = View.VISIBLE
+        binding.errorMsg.visibility = View.GONE
     }
 
     override fun hideLoading() {
-        Log.d("wada", "hide loading")
+        binding.progress.visibility = View.GONE
     }
 
     override fun showNewsList(newsList: List<News>) {
+        binding.errorMsg.visibility = View.GONE
+        adapter.setNewsList(newsList)
         Log.d("wada", "show news list")
     }
 
@@ -83,6 +100,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showError(throwable: Throwable) {
+        binding.errorMsg.visibility = View.VISIBLE
         Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
     }
     // View 実装ここまで
