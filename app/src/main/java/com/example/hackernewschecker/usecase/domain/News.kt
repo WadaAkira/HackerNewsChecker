@@ -1,14 +1,16 @@
-package com.example.hackernewschecker.usecase.database
+package com.example.hackernewschecker.usecase.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.hackernewschecker.usecase.database.IntListTypeConverter
 
 /**
- * データベースの１レコードを示すデータ
+ * Hacker News API と通信した時のレスポンスを保持するクラス<br>
+ * また、データベースの１レコード分のデータも示す
  */
 @Entity(tableName = "hacker_news")
-data class NewsEntity(
+data class News(
     @PrimaryKey(autoGenerate = false) val id: Int,
     val by: String?,
     val descendants: Int?,

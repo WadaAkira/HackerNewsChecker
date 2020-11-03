@@ -1,7 +1,7 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * 起動画面の実装規約

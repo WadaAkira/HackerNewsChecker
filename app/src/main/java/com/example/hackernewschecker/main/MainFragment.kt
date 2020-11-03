@@ -14,7 +14,7 @@ import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.MainActivity
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainFragmentBinding
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 import javax.inject.Inject
 
 /**

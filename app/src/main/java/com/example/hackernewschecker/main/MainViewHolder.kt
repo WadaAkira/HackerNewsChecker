@@ -3,7 +3,7 @@ package com.example.hackernewschecker.main
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainViewholderBinding
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * Hacker News 一つ分の表示

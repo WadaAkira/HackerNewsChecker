@@ -1,6 +1,7 @@
 package com.example.hackernewschecker.usecase.database
 
 import androidx.room.*
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * hacker_news テーブルへアクセスするクラス
@@ -8,11 +9,11 @@ import androidx.room.*
 @Dao
 interface HackerNewsDao {
     @Query("SELECT * FROM hacker_news")
-    fun loadList(): List<NewsEntity>
+    fun loadList(): List<News>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(news: NewsEntity)
+    fun insert(news: News)
 
     @Delete
-    fun delete(news: NewsEntity)
+    fun delete(news: News)
 }

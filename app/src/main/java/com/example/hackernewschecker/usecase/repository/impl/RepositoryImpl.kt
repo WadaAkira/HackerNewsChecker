@@ -2,7 +2,7 @@ package com.example.hackernewschecker.usecase.repository.impl
 
 import com.example.hackernewschecker.usecase.repository.Repository
 import com.example.hackernewschecker.usecase.repository.api.HackerNewsApi
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 import retrofit2.Retrofit
 import javax.inject.Inject
 

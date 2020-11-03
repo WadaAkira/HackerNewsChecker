@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.usecase
 
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * HackerNews API と通信するユースケース

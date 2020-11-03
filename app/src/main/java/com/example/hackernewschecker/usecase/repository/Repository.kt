@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.usecase.repository
 
-import com.example.hackernewschecker.usecase.response.News
+import com.example.hackernewschecker.usecase.domain.News
 
 /**
  * アプリのデータアクセスを一元管理する
