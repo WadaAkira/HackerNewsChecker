@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- マージン/パディング等 View のサイズに係る設定 -->
     <dimen name="default_padding">14dp</dimen>
     <dimen name="small_padding">8dp</dimen>
     <dimen name="default_corner_radius">4dp</dimen>
     <dimen name="default_elevation">4dp</dimen>
+
+    <!-- フォントサイズや行間等、フォントサイズに係る設定 -->
     <dimen name="title_font_size">17sp</dimen>
     <dimen name="title_line_space">3sp</dimen>
     <dimen name="info_font_size">14sp</dimen>
