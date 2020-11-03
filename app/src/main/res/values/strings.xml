@@ -15,4 +15,7 @@
     <!-- エラーハンドリング -->
     <string name="error_main_api">通信に失敗しました。再度通信する場合はこちらをタップしてください。</string>
     <string name="error_invalid_url">こちらの記事には有効な URL が設定されていません。</string>
+
+    <!-- 履歴がない時 -->
+    <string name="none_history">まだ閲覧履歴がありません。</string>
 </resources>

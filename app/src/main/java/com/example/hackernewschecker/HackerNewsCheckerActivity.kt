@@ -3,7 +3,6 @@ package com.example.hackernewschecker
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,6 +10,8 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.HackerNewsCheckerActivityBinding
+import com.example.hackernewschecker.history.HistoryFragment
+import com.example.hackernewschecker.license.LicenseFragment
 import com.example.hackernewschecker.main.MainFragment
 
 /**
@@ -59,13 +60,21 @@ class HackerNewsCheckerActivity : AppCompatActivity() {
 
     // Fragment を切り替える
     private fun switchFragment(fragment: Fragment) {
+        val fragments = supportFragmentManager.fragments
+
+        if (fragments.isNotEmpty()) {
+            val currentFragment = fragments[0]
+            when {
+                currentFragment is MainFragment && fragment is MainFragment -> return
+                currentFragment is HistoryFragment && fragment is HistoryFragment -> return
+                currentFragment is LicenseFragment && fragment is LicenseFragment -> return
+            }
+        }
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, fragment)
             .commit()
-
-        // Todo 同じフラグメントを表示しようとしていないかチェックする処理を実装
-        Log.d("wada", supportFragmentManager.fragments.toString())
     }
 
     // Popup メニューを作成する
@@ -76,7 +85,7 @@ class HackerNewsCheckerActivity : AppCompatActivity() {
             it.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
                     R.id.top -> switchFragment(MainFragment.newInstance())
-                    R.id.history -> switchFragment(MainFragment.newInstance())
+                    R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.license -> switchFragment(MainFragment.newInstance())
                 }
                 true
