@@ -11,7 +11,7 @@ import com.example.hackernewschecker.usecase.domain.News
 class MainViewHolder(private val binding: MainViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(news: News, callback: (String) -> Unit) {
+    fun bind(news: News, callback: (News) -> Unit) {
         // 表示を制御
         val context = itemView.context
         binding.also {
@@ -22,7 +22,7 @@ class MainViewHolder(private val binding: MainViewholderBinding) :
 
             // コールバックの設定
             it.root.setOnClickListener {
-                callback(news.url ?: "")
+                callback(news)
             }
         }
     }

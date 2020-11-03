@@ -30,8 +30,10 @@ interface MainContract {
 
         /**
          * Hacker News の詳細ページを開く
+         *
+         * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(url: String)
+        fun openNewsSite(news: News)
 
         /**
          * プレゼンターの処理を解放する

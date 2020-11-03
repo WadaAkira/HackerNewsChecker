@@ -14,7 +14,7 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>()
     private val newsList: MutableList<News> = mutableListOf()
 
     // Hacker News タップ時のコールバック
-    internal var newsCallback: (String) -> Unit = { _ -> }
+    internal var newsCallback: (News) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(

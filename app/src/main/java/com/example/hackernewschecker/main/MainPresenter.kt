@@ -2,6 +2,7 @@ package com.example.hackernewschecker.main
 
 import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.domain.News
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -97,13 +98,14 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         view.showNewsList(responseList)
     }
 
-    override fun openNewsSite(url: String) {
+    override fun openNewsSite(news: News) {
         // 通信中は画面遷移しないようにする
         if (isLoading) {
             return
         }
 
-        if (url.isEmpty()) {
+        val url = news.url
+        if (url.isNullOrEmpty()) {
             view.showErrorToast(IllegalStateException("url is empty."))
             return
         }
@@ -113,6 +115,12 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         } catch (e: Throwable) {
             view.showErrorToast(e)
             return
+        }
+
+        // 画面遷移しつつ Database に保存する
+        launch(Dispatchers.IO) {
+            // stop() 時にキャンセルしないため jobList に追加しない
+            useCase.insertNews(news)
         }
 
         view.transitNewsSite(uri)

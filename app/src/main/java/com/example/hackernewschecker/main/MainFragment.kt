@@ -74,8 +74,8 @@ class MainFragment : Fragment(), MainContract.View {
             adapter.clearNewsList()
             presenter.loadPage()
         }
-        adapter.newsCallback = { url ->
-            presenter.openNewsSite(url)
+        adapter.newsCallback = { news ->
+            presenter.openNewsSite(news)
         }
 
         presenter.loadPage()
