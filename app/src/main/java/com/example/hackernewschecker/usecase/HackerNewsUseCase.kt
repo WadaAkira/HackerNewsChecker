@@ -3,7 +3,7 @@ package com.example.hackernewschecker.usecase
 import com.example.hackernewschecker.usecase.domain.News
 
 /**
- * HackerNews API と通信するユースケース
+ * HackerNews API と通信し、表示履歴を保存するユースケース
  */
 interface HackerNewsUseCase {
     /**

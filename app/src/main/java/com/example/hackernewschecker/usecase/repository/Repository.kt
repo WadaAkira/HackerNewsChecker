@@ -28,4 +28,18 @@ interface Repository {
      * @param news 保存する Hacker News
      */
     suspend fun insertNews(news: News)
+
+    /**
+     * Hacker News の表示履歴をすべて取得する
+     *
+     * @return 表示履歴
+     */
+    suspend fun loadHistoryList(): List<News>
+
+    /**
+     * Hacker News の表示履歴を削除する
+     *
+     * @param news 削除する履歴
+     */
+    suspend fun deleteHistory(news: News)
 }
