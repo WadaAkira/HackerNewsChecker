@@ -40,17 +40,15 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         val job = launch(exceptionHandler) {
             view.showLoading()
 
-            withContext(Dispatchers.IO) {
-                newsIdList = useCase.loadCurrentNewsIdList()
+            val newsIdList = withContext(Dispatchers.IO) {
+                useCase.loadCurrentNewsIdList()
+            }
 
-                if (newsIdList.isEmpty()) {
-                    withContext(Dispatchers.Main) {
-                        view.hideLoading()
-                        view.showError(IllegalStateException("Current stories are not found."))
-                    }
-                } else {
-                    loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
-                }
+            if (newsIdList.isEmpty()) {
+                view.hideLoading()
+                view.showError(IllegalStateException("Current stories are not found."))
+            } else {
+                loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
             }
         }
         jobList.add(job)
@@ -70,9 +68,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         }
 
         val job = launch(exceptionHandler) {
-            withContext(Dispatchers.IO) {
-                loadNews(newsIdList.subList(firstIndex, lastIndex))
-            }
+            loadNews(newsIdList.subList(firstIndex, lastIndex))
         }
         jobList.add(job)
     }
@@ -80,14 +76,14 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     // Hacker News Id にひもづく記事を取得する
     private suspend fun loadNews(newsIdList: List<Int>) {
         val responseList = newsIdList.map { newsId ->
-            async { useCase.loadNews(newsId) }
-        }.awaitAll()
-
-        withContext(Dispatchers.Main) {
-            loadCount++
-            view.hideLoading()
-            view.showNewsList(responseList)
+            withContext(Dispatchers.IO) {
+                useCase.loadNews(newsId)
+            }
         }
+
+        loadCount++
+        view.hideLoading()
+        view.showNewsList(responseList)
     }
 
     override fun openNewsSite(url: String) {
