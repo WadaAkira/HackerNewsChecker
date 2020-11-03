@@ -11,13 +11,14 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
 
     companion object {
         private const val CURRENT_NEWS_TAKE_VALUE = 5
+        private const val LOADNEXT_TAKE_VALUE = 10
     }
 
     private lateinit var view: MainContract.View
 
     // ロードネクストの制御
     private var newsIdList: List<Int> = emptyList()
-    private var loadCount = 0
+    private var loadNextFirstIndex = 0
 
     // コルーチンの制御
     private val jobList = mutableListOf<Job>()
@@ -48,7 +49,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
                 view.hideLoading()
                 view.showError(IllegalStateException("Current stories are not found."))
             } else {
-                loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE))
+                loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
             }
         }
         jobList.add(job)
@@ -56,32 +57,31 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
 
     override fun loadNext() {
         // ロードネクストできるか判定
-        val firstIndex = loadCount * CURRENT_NEWS_TAKE_VALUE
-        if (newsIdList.size <= firstIndex) {
+        if (newsIdList.size <= loadNextFirstIndex) {
             return
         }
 
-        val lastIndex = if (newsIdList.size <= firstIndex + CURRENT_NEWS_TAKE_VALUE) {
+        val lastIndex = if (newsIdList.size <= loadNextFirstIndex + LOADNEXT_TAKE_VALUE) {
             newsIdList.size
         } else {
-            firstIndex + CURRENT_NEWS_TAKE_VALUE
+            loadNextFirstIndex + LOADNEXT_TAKE_VALUE
         }
 
         val job = launch(exceptionHandler) {
-            loadNews(newsIdList.subList(firstIndex, lastIndex))
+            loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex + 1)
         }
         jobList.add(job)
     }
 
     // Hacker News Id にひもづく記事を取得する
-    private suspend fun loadNews(newsIdList: List<Int>) {
+    private suspend fun loadNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
         val responseList = newsIdList.map { newsId ->
             withContext(Dispatchers.IO) {
                 useCase.loadNews(newsId)
             }
         }
 
-        loadCount++
+        this.loadNextFirstIndex = loadNextFirstIndex
         view.hideLoading()
         view.showNewsList(responseList)
     }
