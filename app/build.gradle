@@ -32,7 +32,7 @@ android {
     }
 
     // ViewBinding を有効化
-    viewBinding.enabled = true
+    android.buildFeatures.viewBinding = true
 }
 
 dependencies {
