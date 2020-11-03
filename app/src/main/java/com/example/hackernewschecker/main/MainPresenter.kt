@@ -2,12 +2,16 @@ package com.example.hackernewschecker.main
 
 import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.domain.News
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) :
+class MainPresenter @Inject constructor(
+    private val newsUseCase: HackerNewsUseCase,
+    private val historyUseCase: HistoryUseCase
+) :
     MainContract.Presenter,
     CoroutineScope {
 
@@ -46,7 +50,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
             view.showLoading()
 
             newsIdList = withContext(Dispatchers.IO) {
-                useCase.loadCurrentNewsIdList()
+                newsUseCase.loadCurrentNewsIdList()
             }
 
             if (newsIdList.isEmpty()) {
@@ -88,7 +92,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     private suspend fun loadNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
         val responseList = newsIdList.map { newsId ->
             withContext(Dispatchers.IO) {
-                useCase.loadNews(newsId)
+                newsUseCase.loadNews(newsId)
             }
         }
 
@@ -120,7 +124,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         // 画面遷移しつつ Database に保存する
         launch(Dispatchers.IO) {
             // stop() 時にキャンセルしないため jobList に追加しない
-            useCase.insertNews(news)
+            historyUseCase.insert(news)
         }
 
         view.transitNewsSite(uri)

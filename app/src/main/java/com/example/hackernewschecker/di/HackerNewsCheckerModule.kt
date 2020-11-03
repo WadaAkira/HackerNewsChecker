@@ -5,7 +5,9 @@ import androidx.room.Room
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
+import com.example.hackernewschecker.usecase.impl.HistoryUseCaseImpl
 import com.example.hackernewschecker.usecase.repository.Repository
 import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
 import com.example.hackernewschecker.usecase.repository.impl.RepositoryImpl
@@ -67,6 +69,12 @@ class HackerNewsCheckerModule(applicationContext: Context) {
     @Provides
     fun provideHackerNewsUseCase(repository: Repository): HackerNewsUseCase {
         return HackerNewsUseCaseImpl(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHistoryUseCase(repository: Repository): HistoryUseCase {
+        return HistoryUseCaseImpl(repository)
     }
 
     @Singleton
