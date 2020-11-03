@@ -60,6 +60,7 @@ class MainFragment : Fragment(), MainContract.View {
 
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.addItemDecoration(MainDecoration())
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()
             presenter.loadPage()
