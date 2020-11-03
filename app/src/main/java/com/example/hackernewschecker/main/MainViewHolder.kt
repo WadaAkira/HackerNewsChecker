@@ -1,6 +1,7 @@
 package com.example.hackernewschecker.main
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainViewholderBinding
 import com.example.hackernewschecker.usecase.response.News
 
@@ -12,12 +13,15 @@ class MainViewHolder(private val binding: MainViewholderBinding) :
 
     fun bind(news: News, callback: (String) -> Unit) {
         // 表示を制御
+        val context = itemView.context
         binding.title.text = news.title
+        binding.author.text = news.by
+        binding.points.text = context.getString(R.string.score, news.score)
+        binding.comments.text = context.getString(R.string.comments, news.descendants)
 
         // コールバックの設定
-        val url = "https://news.ycombinator.com/item?id=${news.id}"
         binding.root.setOnClickListener {
-            callback(url)
+            callback(news.url ?: "")
         }
     }
 }

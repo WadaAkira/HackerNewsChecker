@@ -5,4 +5,5 @@
     <dimen name="default_corner_radius">4dp</dimen>
     <dimen name="title_font_size">17sp</dimen>
     <dimen name="title_line_space">3sp</dimen>
+    <dimen name="info_font_size">14sp</dimen>
 </resources>
