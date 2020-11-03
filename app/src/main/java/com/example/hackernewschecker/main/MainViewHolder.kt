@@ -17,7 +17,7 @@ class MainViewHolder(private val binding: MainViewholderBinding) :
         binding.title.text = news.title
         binding.author.text = news.by
         binding.points.text = context.getString(R.string.score, news.score)
-        binding.comments.text = context.getString(R.string.comments, news.descendants)
+        binding.comments.text = context.getString(R.string.comments, news.descendants ?: 0)
 
         // コールバックの設定
         binding.root.setOnClickListener {

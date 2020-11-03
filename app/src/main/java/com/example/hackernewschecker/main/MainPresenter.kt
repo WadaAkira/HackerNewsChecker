@@ -19,6 +19,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     // ロードネクストの制御
     private var newsIdList: List<Int> = emptyList()
     private var loadNextFirstIndex = 0
+    private var isLoading = false
 
     // コルーチンの制御
     private val jobList = mutableListOf<Job>()
@@ -37,11 +38,12 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     override fun loadPage() {
         // 通信失敗時のリトライに備え、リストを空にしておく
         newsIdList = emptyList()
+        isLoading = true
 
         val job = launch(exceptionHandler) {
             view.showLoading()
 
-            val newsIdList = withContext(Dispatchers.IO) {
+            newsIdList = withContext(Dispatchers.IO) {
                 useCase.loadCurrentNewsIdList()
             }
 
@@ -57,9 +59,15 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
 
     override fun loadNext() {
         // ロードネクストできるか判定
+        if (isLoading) {
+            return
+        }
+
         if (newsIdList.size <= loadNextFirstIndex) {
             return
         }
+
+        isLoading = true
 
         val lastIndex = if (newsIdList.size <= loadNextFirstIndex + LOADNEXT_TAKE_VALUE) {
             newsIdList.size
@@ -68,7 +76,8 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         }
 
         val job = launch(exceptionHandler) {
-            loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex + 1)
+            view.showLoading()
+            loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
         }
         jobList.add(job)
     }
@@ -82,6 +91,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         }
 
         this.loadNextFirstIndex = loadNextFirstIndex
+        isLoading = false
         view.hideLoading()
         view.showNewsList(responseList)
     }

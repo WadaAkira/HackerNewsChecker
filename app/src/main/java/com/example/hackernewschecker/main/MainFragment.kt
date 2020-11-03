@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.usecase.response.News
@@ -61,6 +62,8 @@ class MainFragment : Fragment(), MainContract.View {
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(MainDecoration())
+        binding.recyclerView.addOnScrollListener(ScrollListener())
+        
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()
             presenter.loadPage()
@@ -103,4 +106,16 @@ class MainFragment : Fragment(), MainContract.View {
         Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
     }
     // View 実装ここまで
+
+    // RecyclerView のスクロール検出用のリスナー実装
+    inner class ScrollListener : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            if (!recyclerView.canScrollVertically(1)) {
+                presenter.loadNext()
+            }
+        }
+    }
+    // RecyclerView のスクロール検出用のリスナー実装ここまで
 }

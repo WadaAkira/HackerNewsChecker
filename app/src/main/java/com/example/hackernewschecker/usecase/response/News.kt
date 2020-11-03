@@ -6,7 +6,7 @@ package com.example.hackernewschecker.usecase.response
 data class News(
     val id: Int,
     val by: String,
-    val descendants: Int,
+    val descendants: Int?,
     val kids: List<Int>?,
     val score: Int,
     val time: Int,
