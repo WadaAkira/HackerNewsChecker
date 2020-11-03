@@ -1,5 +1,6 @@
 package com.example.hackernewschecker.main
 
+import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -97,7 +98,24 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     }
 
     override fun openNewsSite(url: String) {
-        view.transitNewsSite(url)
+        // 通信中は画面遷移しないようにする
+        if (isLoading) {
+            return
+        }
+
+        if (url.isEmpty()) {
+            view.showErrorToast(IllegalStateException("url is empty."))
+            return
+        }
+
+        val uri = try {
+            Uri.parse(url)
+        } catch (e: Throwable) {
+            view.showErrorToast(e)
+            return
+        }
+
+        view.transitNewsSite(uri)
     }
 
     override fun stop() {

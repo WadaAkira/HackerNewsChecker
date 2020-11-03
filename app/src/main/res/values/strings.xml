@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Hacker News Checker</string>
     <string name="error_main_api">通信に失敗しました。再度通信する場合はこちらをタップしてください。</string>
+    <string name="error_invalid_url">こちらの記事には有効な URL が設定されていません。</string>
     <string name="score">%d points</string>
     <string name="comments">%d comments</string>
 </resources>
