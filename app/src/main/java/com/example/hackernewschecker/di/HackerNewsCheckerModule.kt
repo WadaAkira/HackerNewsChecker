@@ -28,12 +28,13 @@ class HackerNewsCheckerModule(applicationContext: Context) {
     companion object {
         private const val HACKER_NEWS_API_BASE_URL = "https://hacker-news.firebaseio.com/v0/"
         private const val TIMEOUT_SECOND = 30L
+        private const val DATABASE_NAME = "hacker_news_database"
     }
 
     private val database = Room.databaseBuilder(
         applicationContext,
         HackerNewsDatabase::class.java,
-        "hacker_news_database"
+        DATABASE_NAME
     ).build()
 
     @Singleton
