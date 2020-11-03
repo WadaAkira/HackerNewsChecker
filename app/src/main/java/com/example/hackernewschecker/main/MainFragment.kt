@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerApplication
-import com.example.hackernewschecker.MainActivity
+import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
@@ -104,7 +104,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun transitNewsSite(url: Uri) {
-        (activity as? MainActivity)?.startWebBrowser(url)
+        (activity as? HackerNewsCheckerActivity)?.startWebBrowser(url)
     }
 
     override fun showError(throwable: Throwable) {

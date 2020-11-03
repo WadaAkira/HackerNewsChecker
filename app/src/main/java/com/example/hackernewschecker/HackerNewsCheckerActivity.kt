@@ -13,7 +13,7 @@ import com.example.hackernewschecker.main.MainFragment
  *
  * WebView は別アクティビティとして実装する
  */
-class MainActivity : AppCompatActivity() {
+class HackerNewsCheckerActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
