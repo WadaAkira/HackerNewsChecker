@@ -3,7 +3,7 @@ package com.example.hackernewschecker.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.R
+import com.example.hackernewschecker.databinding.MainViewholderBinding
 import com.example.hackernewschecker.usecase.response.News
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.main_viewholder, parent, false)
+            MainViewholderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
