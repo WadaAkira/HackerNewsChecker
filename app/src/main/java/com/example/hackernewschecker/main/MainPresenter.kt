@@ -11,8 +11,8 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     CoroutineScope {
 
     companion object {
-        private const val CURRENT_NEWS_TAKE_VALUE = 5
-        private const val LOADNEXT_TAKE_VALUE = 10
+        private const val CURRENT_NEWS_TAKE_VALUE = 10
+        private const val LOADNEXT_TAKE_VALUE = 20
     }
 
     private lateinit var view: MainContract.View
