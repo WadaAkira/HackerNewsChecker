@@ -10,7 +10,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
     CoroutineScope {
 
     companion object {
-        private const val CURRENT_NEWS_TAKE_VALUE = 10
+        private const val CURRENT_NEWS_TAKE_VALUE = 5
     }
 
     private lateinit var view: MainContract.View
@@ -69,25 +69,25 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
             firstIndex + CURRENT_NEWS_TAKE_VALUE
         }
 
-        loadNews(newsIdList.subList(firstIndex, lastIndex))
-    }
-
-    // Hacker News Id にひもづく記事を取得する
-    private fun loadNews(newsIdList: List<Int>) {
         val job = launch(exceptionHandler) {
             withContext(Dispatchers.IO) {
-                val responseList = newsIdList.map { newsId ->
-                    async { useCase.loadNews(newsId) }
-                }.awaitAll()
-
-                withContext(Dispatchers.Main) {
-                    loadCount++
-                    view.hideLoading()
-                    view.showNewsList(responseList)
-                }
+                loadNews(newsIdList.subList(firstIndex, lastIndex))
             }
         }
         jobList.add(job)
+    }
+
+    // Hacker News Id にひもづく記事を取得する
+    private suspend fun loadNews(newsIdList: List<Int>) {
+        val responseList = newsIdList.map { newsId ->
+            async { useCase.loadNews(newsId) }
+        }.awaitAll()
+
+        withContext(Dispatchers.Main) {
+            loadCount++
+            view.hideLoading()
+            view.showNewsList(responseList)
+        }
     }
 
     override fun openNewsSite(url: String) {
