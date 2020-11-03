@@ -64,9 +64,11 @@ class MainFragment : Fragment(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         // RecyclerView とイベントハンドリングの実装
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.addItemDecoration(MainDecoration())
-        binding.recyclerView.addOnScrollListener(ScrollListener())
+        binding.recyclerView.also {
+            it.adapter = adapter
+            it.addItemDecoration(MainDecoration())
+            it.addOnScrollListener(ScrollListener())
+        }
 
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()

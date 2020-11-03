@@ -14,14 +14,16 @@ class MainViewHolder(private val binding: MainViewholderBinding) :
     fun bind(news: News, callback: (String) -> Unit) {
         // 表示を制御
         val context = itemView.context
-        binding.title.text = news.title
-        binding.author.text = news.by
-        binding.points.text = context.getString(R.string.score, news.score)
-        binding.comments.text = context.getString(R.string.comments, news.descendants ?: 0)
+        binding.also {
+            it.title.text = news.title
+            it.author.text = news.by
+            it.points.text = context.getString(R.string.score, news.score)
+            it.comments.text = context.getString(R.string.comments, news.descendants ?: 0)
 
-        // コールバックの設定
-        binding.root.setOnClickListener {
-            callback(news.url ?: "")
+            // コールバックの設定
+            it.root.setOnClickListener {
+                callback(news.url ?: "")
+            }
         }
     }
 }
