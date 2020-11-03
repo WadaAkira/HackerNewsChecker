@@ -4,21 +4,19 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hackernewschecker.databinding.MainActivityBinding
+import com.example.hackernewschecker.databinding.HackerNewsCheckerActivityBinding
 import com.example.hackernewschecker.main.MainFragment
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
- * メイン画面と履歴画面はフラグメントを切り替えて表示する<br>
- *
- * WebView は別アクティビティとして実装する
+ * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
 class HackerNewsCheckerActivity : AppCompatActivity() {
-    private lateinit var binding: MainActivityBinding
+    private lateinit var binding: HackerNewsCheckerActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(layoutInflater)
+        binding = HackerNewsCheckerActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Toolbar の設定
