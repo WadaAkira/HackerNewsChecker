@@ -36,3 +36,13 @@ fun Context.showToast(msg: String, length: Int = Toast.LENGTH_SHORT) {
 fun Job.addTo(list: MutableList<Job>) {
     list.add(this)
 }
+
+/**
+ * null 文字の場合空文字に変換する。<br>
+ * null 以外の文字が設定されていた場合、その文字を返す。
+ *
+ * @return null 以外の文字
+ */
+fun String?.toEmptyOrString(): String {
+    return this ?: ""
+}

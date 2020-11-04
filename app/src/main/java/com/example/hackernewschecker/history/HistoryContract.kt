@@ -78,8 +78,11 @@ interface HistoryContract {
 
         /**
          * 履歴の削除を表示に反映する
+         *
+         * @param newsId 削除する履歴の ID
+         * @param title 削除する履歴のタイトル
          */
-        fun showToDeleteHistory()
+        fun showToDeleteHistory(newsId: Int, title: String)
 
         /**
          * 履歴の取得に失敗したことを表示する

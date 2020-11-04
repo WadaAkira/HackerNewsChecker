@@ -4,6 +4,7 @@ import android.net.Uri
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.domain.News
 import com.example.hackernewschecker.util.addTo
+import com.example.hackernewschecker.util.toEmptyOrString
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -76,7 +77,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
             withContext(Dispatchers.IO) {
                 useCase.delete(news)
             }
-            view.showToDeleteHistory()
+            view.showToDeleteHistory(news.id, news.title.toEmptyOrString())
         }
         jobList.add(job)
     }

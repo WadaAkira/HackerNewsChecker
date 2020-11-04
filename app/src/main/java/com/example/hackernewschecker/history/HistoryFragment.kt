@@ -111,8 +111,10 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         binding.noneMsg.visibility = View.VISIBLE
     }
 
-    override fun showToDeleteHistory() {
-
+    override fun showToDeleteHistory(newsId: Int, title: String) {
+        val context = context ?: return
+        adapter.removeNews(newsId)
+        context.showToast(context.getString(R.string.deleted_history, title))
     }
 
     override fun showError(throwable: Throwable) {

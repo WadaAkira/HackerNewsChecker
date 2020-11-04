@@ -18,6 +18,7 @@
     <string name="error_invalid_url">こちらの記事には有効な URL が設定されていません。</string>
     <string name="error_history_database">履歴の取得に失敗しました。再度取得する場合はこちらをタップしてください。</string>
 
-    <!-- 履歴がない時 -->
+    <!-- 履歴関連 -->
     <string name="none_history">まだ閲覧履歴がありません。</string>
+    <string name="deleted_history">「%s」の閲覧履歴を削除しました。</string>
 </resources>
