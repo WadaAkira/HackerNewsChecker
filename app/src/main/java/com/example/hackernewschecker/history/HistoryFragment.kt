@@ -52,6 +52,12 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        presenter.loadPage()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
 
@@ -61,35 +67,35 @@ class HistoryFragment : Fragment(), HistoryContract.View {
 
     // 以下、HistoryContract.View 実装
     override fun showLoading() {
-        TODO("Not yet implemented")
+
     }
 
     override fun hideLoading() {
-        TODO("Not yet implemented")
+
     }
 
     override fun showHistoryList(historyList: List<News>) {
-        TODO("Not yet implemented")
+
     }
 
     override fun transitNewsSite(url: Uri) {
-        TODO("Not yet implemented")
+
     }
 
     override fun showNoneHistory() {
-        TODO("Not yet implemented")
+
     }
 
     override fun showToDeleteHistory() {
-        TODO("Not yet implemented")
+
     }
 
     override fun showError(throwable: Throwable) {
-        TODO("Not yet implemented")
+
     }
 
     override fun showErrorToast(throwable: Throwable) {
-        TODO("Not yet implemented")
+
     }
     // 以下、HistoryContract.View 実装ここまで
 }

@@ -3,6 +3,7 @@ package com.example.hackernewschecker.history
 import android.net.Uri
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -30,9 +31,22 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
     }
 
     override fun loadPage() {
-//        kokokara実装
-//        adapter / viewholder の共通化
-//                viewの実装
+        isLoading = true
+
+        launch(exceptionHandler) {
+            view.showLoading()
+            val historyList = withContext(Dispatchers.IO) {
+                useCase.loadList()
+            }
+
+            isLoading = false
+            view.hideLoading()
+            if (historyList.isEmpty()) {
+                view.showNoneHistory()
+            } else {
+                view.showHistoryList(historyList)
+            }
+        }.addTo(jobList)
     }
 
     override fun openNewsSite(news: News) {
