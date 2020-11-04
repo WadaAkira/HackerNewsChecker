@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.hackernewschecker.databinding.HackerNewsCheckerActivityBinding
+import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.license.LicenseFragment
 import com.example.hackernewschecker.main.MainFragment
@@ -23,11 +23,11 @@ class AppActivity : AppCompatActivity() {
         private const val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
     }
 
-    private lateinit var binding: HackerNewsCheckerActivityBinding
+    private lateinit var binding: AppActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = HackerNewsCheckerActivityBinding.inflate(layoutInflater)
+        binding = AppActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Toolbar の設定
@@ -91,6 +91,7 @@ class AppActivity : AppCompatActivity() {
                     R.id.top -> switchFragment(MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.license -> switchFragment(MainFragment.newInstance())
+                    R.id.how_to -> switchFragment(MainFragment.newInstance())
                     R.id.official -> startWebBrowser(Uri.parse(OFFICIAL_WEB_SITE_URL))
                 }
                 true
