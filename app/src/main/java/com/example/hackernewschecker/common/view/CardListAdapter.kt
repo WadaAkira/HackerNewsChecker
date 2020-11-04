@@ -45,7 +45,7 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
      *
      * @param newsId 破棄する Hacker News の id
      */
-    fun removeNewsList(newsId: Int) {
+    fun removeNews(newsId: Int) {
         newsList.removeIf { it.id == newsId }
         notifyDataSetChanged()
     }
