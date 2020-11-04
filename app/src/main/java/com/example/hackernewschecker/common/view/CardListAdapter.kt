@@ -41,6 +41,20 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
     }
 
     /**
+     * 指定したインデックスの News オブジェクトを返す
+     *
+     * @param index インデックス
+     * @return インデックスに対応した News オブジェクト/取得できない場合は null
+     */
+    fun getNews(index: Int): News? {
+        return if (newsList.size <= index) {
+            null
+        } else {
+            newsList[index]
+        }
+    }
+
+    /**
      * 指定した newsId の Hacker News の情報を破棄する
      *
      * @param newsId 破棄する Hacker News の id

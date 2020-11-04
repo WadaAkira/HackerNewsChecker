@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.R
@@ -69,6 +71,22 @@ class HistoryFragment : Fragment(), HistoryContract.View {
             it.adapter = adapter
             it.addItemDecoration(CardListDecoration())
         }
+
+        // スワイプによる履歴の削除をイベントハンドリング
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val news = adapter.getNews(viewHolder.adapterPosition) ?: return
+                presenter.deleteHistory(news)
+            }
+        }).attachToRecyclerView(binding.recyclerView)
 
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()
