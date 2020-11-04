@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
         android:text="@string/error_main_api"
-        android:textColor="@color/primary_dark_color"
+        android:textColor="@color/design_default_color_error"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent" />
 
