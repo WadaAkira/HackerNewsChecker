@@ -134,6 +134,11 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         val context = context ?: return
         adapter.removeNews(newsId)
         context.showToast(context.getString(R.string.deleted_history, title))
+
+        // すべての要素を削除した場合、履歴がないことを表示する
+        if (adapter.itemCount <= 0) {
+            showNoneHistory()
+        }
     }
 
     override fun showError(throwable: Throwable) {
