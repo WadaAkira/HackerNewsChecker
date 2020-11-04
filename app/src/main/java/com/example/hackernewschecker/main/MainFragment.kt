@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.R
-import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.common.view.CardListAdapter
+import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
 import com.example.hackernewschecker.util.Log
@@ -101,7 +101,6 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showNewsList(newsList: List<News>) {
-        binding.errorMsg.visibility = View.GONE
         adapter.setNewsList(newsList)
     }
 

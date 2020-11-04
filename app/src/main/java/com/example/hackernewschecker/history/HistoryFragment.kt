@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.R
+import com.example.hackernewschecker.common.view.CardListAdapter
+import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
 import com.example.hackernewschecker.util.Log
@@ -26,6 +28,9 @@ class HistoryFragment : Fragment(), HistoryContract.View {
 
     @Inject
     internal lateinit var presenter: HistoryContract.Presenter
+
+    @Inject
+    internal lateinit var adapter: CardListAdapter
 
     companion object {
         /**
@@ -59,6 +64,21 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // RecyclerView とイベントハンドリングの実装
+        binding.recyclerView.also {
+            it.adapter = adapter
+            it.addItemDecoration(CardListDecoration())
+        }
+
+        binding.errorMsg.setOnClickListener {
+            adapter.clearNewsList()
+            presenter.loadPage()
+        }
+
+        adapter.newsCallback = { news ->
+            presenter.openNewsSite(news)
+        }
+
         presenter.loadPage()
     }
 
@@ -80,7 +100,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     }
 
     override fun showHistoryList(historyList: List<News>) {
-
+        adapter.setNewsList(historyList)
     }
 
     override fun transitNewsSite(url: Uri) {
