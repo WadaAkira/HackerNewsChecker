@@ -30,7 +30,9 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
     }
 
     override fun loadPage() {
-        
+//        kokokara実装
+//        adapter / viewholder の共通化
+//                viewの実装
     }
 
     override fun openNewsSite(news: News) {

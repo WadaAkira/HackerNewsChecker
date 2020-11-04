@@ -13,6 +13,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/official"
+        android:title="@string/menu_official"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/license"
         android:title="@string/menu_license"
         app:showAsAction="ifRoom" />

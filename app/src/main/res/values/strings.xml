@@ -6,6 +6,7 @@
     <string name="menu_reader">三点リーダ</string>
     <string name="menu_top">トップページ</string>
     <string name="menu_history">履歴</string>
+    <string name="menu_official">公式サイト</string>
     <string name="menu_license">ライセンス</string>
 
     <!-- CardView 表示 -->
