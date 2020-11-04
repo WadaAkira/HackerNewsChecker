@@ -4,6 +4,7 @@ import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -46,7 +47,7 @@ class MainPresenter @Inject constructor(
         newsIdList = emptyList()
         isLoading = true
 
-        val job = launch(exceptionHandler) {
+        launch(exceptionHandler) {
             view.showLoading()
 
             newsIdList = withContext(Dispatchers.IO) {
@@ -59,8 +60,7 @@ class MainPresenter @Inject constructor(
             } else {
                 loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
             }
-        }
-        jobList.add(job)
+        }.addTo(jobList)
     }
 
     override fun loadNext() {
@@ -81,11 +81,10 @@ class MainPresenter @Inject constructor(
             loadNextFirstIndex + LOADNEXT_TAKE_VALUE
         }
 
-        val job = launch(exceptionHandler) {
+        launch(exceptionHandler) {
             view.showLoading()
             loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
-        }
-        jobList.add(job)
+        }.addTo(jobList)
     }
 
     // Hacker News Id にひもづく記事を取得する
