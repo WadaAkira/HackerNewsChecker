@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.HackerNewsCheckerApplication
+import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.util.Log
+import com.example.hackernewschecker.util.showToast
 import javax.inject.Inject
 
 /**
@@ -67,11 +71,12 @@ class HistoryFragment : Fragment(), HistoryContract.View {
 
     // 以下、HistoryContract.View 実装
     override fun showLoading() {
-
+        binding.errorMsg.visibility = View.GONE
+        binding.progress.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-
+        binding.progress.visibility = View.GONE
     }
 
     override fun showHistoryList(historyList: List<News>) {
@@ -79,11 +84,11 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     }
 
     override fun transitNewsSite(url: Uri) {
-
+        (activity as? HackerNewsCheckerActivity)?.startWebBrowser(url)
     }
 
     override fun showNoneHistory() {
-
+        binding.noneMsg.visibility = View.VISIBLE
     }
 
     override fun showToDeleteHistory() {
@@ -91,11 +96,14 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     }
 
     override fun showError(throwable: Throwable) {
-
+        binding.errorMsg.visibility = View.VISIBLE
+        Log.e("Failed to get history list. ${throwable.message}")
     }
 
     override fun showErrorToast(throwable: Throwable) {
-
+        val context = context ?: return
+        context.showToast(R.string.error_invalid_url)
+        Log.e("Failed to open web site. ${throwable.message}")
     }
     // 以下、HistoryContract.View 実装ここまで
 }

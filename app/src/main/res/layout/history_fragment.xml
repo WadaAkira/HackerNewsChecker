@@ -11,6 +11,7 @@
         android:padding="@dimen/default_padding"
         android:text="@string/error_history_database"
         android:textColor="@color/design_default_color_error"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -20,6 +21,7 @@
         android:padding="@dimen/default_padding"
         android:text="@string/none_history"
         android:textColor="@color/primary_text"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/error_msg" />
 
     <androidx.recyclerview.widget.RecyclerView
