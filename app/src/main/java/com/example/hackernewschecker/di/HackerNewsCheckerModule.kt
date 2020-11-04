@@ -2,6 +2,7 @@ package com.example.hackernewschecker.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.hackernewschecker.BuildConfig
 import com.example.hackernewschecker.history.HistoryContract
 import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
@@ -93,13 +94,17 @@ class HackerNewsCheckerModule(applicationContext: Context) {
 
     // okHttpClient を作成する
     private fun createOkHttpClient(): OkHttpClient {
-        // Todo リリース版ではログが出力されないように制御
         return OkHttpClient()
             .newBuilder()
             .connectTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
             .addInterceptor(HttpLoggingInterceptor().also {
-                it.level = HttpLoggingInterceptor.Level.BODY
+                it.level = if (BuildConfig.DEBUG) {
+                    // debuggable の時のみ詳細ログを出力する
+                    HttpLoggingInterceptor.Level.BODY
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
             })
             .build()
     }
