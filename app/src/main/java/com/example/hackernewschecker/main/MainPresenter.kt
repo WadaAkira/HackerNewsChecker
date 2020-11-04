@@ -43,9 +43,19 @@ class MainPresenter @Inject constructor(
     }
 
     override fun loadPage() {
-        // 通信失敗時のリトライに備え、リストを空にしておく
-        newsIdList = emptyList()
+        /*
+         * Pull To Refresh を実装したため、ロードファースト/ロードネクスト中に、
+         * もう一度ロードファーストが実行される可能性がある。
+         * それを防止するためのフラグ制御。
+         */
+        if (isLoading) {
+            return
+        }
+
+        // 通信失敗時や Pull To Refresh のリトライに備え、リストを空にしておく
         isLoading = true
+        newsIdList = emptyList()
+        view.clearNews()
 
         launch(exceptionHandler) {
             view.showLoading()

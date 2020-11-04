@@ -56,6 +56,11 @@ interface MainContract {
         fun hideLoading()
 
         /**
+         * すべての Hacker News を破棄する
+         */
+        fun clearNews()
+
+        /**
          * Hacker News を表示する
          *
          * @param newsList 表示する Hacker News のリスト

@@ -65,6 +65,13 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // SwipeRefreshLayout の処理
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing = true
+            presenter.loadPage()
+            binding.swipeLayout.isRefreshing = false
+        }
+
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.also {
             it.adapter = adapter
@@ -98,6 +105,10 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun hideLoading() {
         binding.progress.visibility = View.GONE
+    }
+
+    override fun clearNews() {
+        adapter.clearNewsList()
     }
 
     override fun showNewsList(newsList: List<News>) {
