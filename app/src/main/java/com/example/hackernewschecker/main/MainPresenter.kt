@@ -2,12 +2,17 @@ package com.example.hackernewschecker.main
 
 import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) :
+class MainPresenter @Inject constructor(
+    private val newsUseCase: HackerNewsUseCase,
+    private val historyUseCase: HistoryUseCase
+) :
     MainContract.Presenter,
     CoroutineScope {
 
@@ -42,11 +47,11 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         newsIdList = emptyList()
         isLoading = true
 
-        val job = launch(exceptionHandler) {
+        launch(exceptionHandler) {
             view.showLoading()
 
             newsIdList = withContext(Dispatchers.IO) {
-                useCase.loadCurrentNewsIdList()
+                newsUseCase.loadCurrentNewsIdList()
             }
 
             if (newsIdList.isEmpty()) {
@@ -55,8 +60,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
             } else {
                 loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
             }
-        }
-        jobList.add(job)
+        }.addTo(jobList)
     }
 
     override fun loadNext() {
@@ -77,18 +81,17 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
             loadNextFirstIndex + LOADNEXT_TAKE_VALUE
         }
 
-        val job = launch(exceptionHandler) {
+        launch(exceptionHandler) {
             view.showLoading()
             loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
-        }
-        jobList.add(job)
+        }.addTo(jobList)
     }
 
     // Hacker News Id にひもづく記事を取得する
     private suspend fun loadNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
         val responseList = newsIdList.map { newsId ->
             withContext(Dispatchers.IO) {
-                useCase.loadNews(newsId)
+                newsUseCase.loadNews(newsId)
             }
         }
 
@@ -120,7 +123,7 @@ class MainPresenter @Inject constructor(private val useCase: HackerNewsUseCase) 
         // 画面遷移しつつ Database に保存する
         launch(Dispatchers.IO) {
             // stop() 時にキャンセルしないため jobList に追加しない
-            useCase.insertNews(news)
+            historyUseCase.insert(news)
         }
 
         view.transitNewsSite(uri)

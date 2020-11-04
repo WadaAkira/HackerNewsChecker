@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.main
+package com.example.hackernewschecker.common.view
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.R
@@ -8,7 +8,7 @@ import com.example.hackernewschecker.usecase.domain.News
 /**
  * Hacker News 一つ分の表示
  */
-class MainViewHolder(private val binding: MainViewholderBinding) :
+class CardViewHolder(private val binding: MainViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(news: News, callback: (News) -> Unit) {

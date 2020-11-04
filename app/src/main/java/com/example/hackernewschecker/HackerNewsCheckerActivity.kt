@@ -19,6 +19,10 @@ import com.example.hackernewschecker.main.MainFragment
  * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
 class HackerNewsCheckerActivity : AppCompatActivity() {
+    companion object {
+        private val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
+    }
+
     private lateinit var binding: HackerNewsCheckerActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +91,7 @@ class HackerNewsCheckerActivity : AppCompatActivity() {
                     R.id.top -> switchFragment(MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.license -> switchFragment(MainFragment.newInstance())
+                    R.id.official -> startWebBrowser(Uri.parse(OFFICIAL_WEB_SITE_URL))
                 }
                 true
             }

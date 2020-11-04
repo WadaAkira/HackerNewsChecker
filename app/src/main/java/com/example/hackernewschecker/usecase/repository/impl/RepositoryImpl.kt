@@ -22,4 +22,12 @@ class RepositoryImpl @Inject constructor(
     override suspend fun insertNews(news: News) {
         database.hackerNewsDao().insert(news)
     }
+
+    override suspend fun loadHistoryList(): List<News> {
+        return database.hackerNewsDao().loadList()
+    }
+
+    override suspend fun deleteHistory(news: News) {
+        database.hackerNewsDao().delete(news)
+    }
 }

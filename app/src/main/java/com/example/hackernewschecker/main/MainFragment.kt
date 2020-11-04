@@ -3,18 +3,20 @@ package com.example.hackernewschecker.main
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.HackerNewsCheckerActivity
+import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.R
+import com.example.hackernewschecker.common.view.CardListAdapter
+import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
+import com.example.hackernewschecker.util.Log
+import com.example.hackernewschecker.util.showToast
 import javax.inject.Inject
 
 /**
@@ -29,7 +31,7 @@ class MainFragment : Fragment(), MainContract.View {
     internal lateinit var presenter: MainContract.Presenter
 
     @Inject
-    internal lateinit var adapter: MainAdapter
+    internal lateinit var adapter: CardListAdapter
 
     companion object {
         /**
@@ -66,7 +68,7 @@ class MainFragment : Fragment(), MainContract.View {
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.also {
             it.adapter = adapter
-            it.addItemDecoration(MainDecoration())
+            it.addItemDecoration(CardListDecoration())
             it.addOnScrollListener(ScrollListener())
         }
 
@@ -90,8 +92,8 @@ class MainFragment : Fragment(), MainContract.View {
 
     // 以下、View 実装
     override fun showLoading() {
-        binding.progress.visibility = View.VISIBLE
         binding.errorMsg.visibility = View.GONE
+        binding.progress.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
@@ -99,7 +101,6 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showNewsList(newsList: List<News>) {
-        binding.errorMsg.visibility = View.GONE
         adapter.setNewsList(newsList)
     }
 
@@ -109,13 +110,13 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun showError(throwable: Throwable) {
         binding.errorMsg.visibility = View.VISIBLE
-        Log.e("HackerNewsChecker", "Failed to get hacker news. ${throwable.message}")
+        Log.e("Failed to get hacker news. ${throwable.message}")
     }
 
     override fun showErrorToast(throwable: Throwable) {
         val context = context ?: return
-        Toast.makeText(context, R.string.error_invalid_url, Toast.LENGTH_SHORT).show()
-        Log.e("HackerNewsChecker", "Failed to open web site. ${throwable.message}")
+        context.showToast(R.string.error_invalid_url)
+        Log.e("Failed to open web site. ${throwable.message}")
     }
     // View 実装ここまで
 

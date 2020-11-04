@@ -14,8 +14,4 @@ class HackerNewsUseCaseImpl @Inject constructor(private val repository: Reposito
     override suspend fun loadNews(newsId: Int): News {
         return repository.loadNews(newsId)
     }
-
-    override suspend fun insertNews(news: News) {
-        return repository.insertNews(news)
-    }
 }

@@ -2,10 +2,15 @@ package com.example.hackernewschecker.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.hackernewschecker.BuildConfig
+import com.example.hackernewschecker.history.HistoryContract
+import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
+import com.example.hackernewschecker.usecase.impl.HistoryUseCaseImpl
 import com.example.hackernewschecker.usecase.repository.Repository
 import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
 import com.example.hackernewschecker.usecase.repository.impl.RepositoryImpl
@@ -71,19 +76,35 @@ class HackerNewsCheckerModule(applicationContext: Context) {
 
     @Singleton
     @Provides
+    fun provideHistoryUseCase(repository: Repository): HistoryUseCase {
+        return HistoryUseCaseImpl(repository)
+    }
+
+    @Singleton
+    @Provides
     fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter {
+        return presenter
+    }
+
+    @Singleton
+    @Provides
+    fun provideHistoryPresenter(presenter: HistoryPresenter): HistoryContract.Presenter {
         return presenter
     }
 
     // okHttpClient を作成する
     private fun createOkHttpClient(): OkHttpClient {
-        // Todo リリース版ではログが出力されないように制御
         return OkHttpClient()
             .newBuilder()
             .connectTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
             .addInterceptor(HttpLoggingInterceptor().also {
-                it.level = HttpLoggingInterceptor.Level.BODY
+                it.level = if (BuildConfig.DEBUG) {
+                    // debuggable の時のみ詳細ログを出力する
+                    HttpLoggingInterceptor.Level.BODY
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
             })
             .build()
     }
