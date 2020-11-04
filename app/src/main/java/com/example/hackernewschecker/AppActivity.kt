@@ -18,7 +18,7 @@ import com.example.hackernewschecker.main.MainFragment
  * HackerNewsChecker のローンチアクティビティ<br>
  * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
-class HackerNewsCheckerActivity : AppCompatActivity() {
+class AppActivity : AppCompatActivity() {
     companion object {
         private val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
     }

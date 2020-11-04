@@ -9,9 +9,9 @@ import javax.inject.Singleton
  */
 @Singleton
 @dagger.Component(
-    modules = [HackerNewsCheckerModule::class]
+    modules = [AppModule::class]
 )
-interface HackerNewsCheckerComponent {
+interface AppComponent {
     fun inject(fragment: MainFragment)
     fun inject(fragment: HistoryFragment)
 }

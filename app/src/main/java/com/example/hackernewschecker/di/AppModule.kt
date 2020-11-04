@@ -29,7 +29,7 @@ import javax.inject.Singleton
  * DI するクラスを定義する
  */
 @Module
-class HackerNewsCheckerModule(applicationContext: Context) {
+class AppModule(applicationContext: Context) {
     companion object {
         private const val HACKER_NEWS_API_BASE_URL = "https://hacker-news.firebaseio.com/v0/"
         private const val TIMEOUT_SECOND = 30L
