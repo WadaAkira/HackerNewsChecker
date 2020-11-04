@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.main
+package com.example.hackernewschecker.common.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,19 +10,19 @@ import javax.inject.Inject
 /**
  * 起動時画面の RecyclerView のアダプタ
  */
-class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainViewHolder>() {
+class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolder>() {
     private val newsList: MutableList<News> = mutableListOf()
 
     // Hacker News タップ時のコールバック
     internal var newsCallback: (News) -> Unit = { _ -> }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        return CardViewHolder(
             MainViewholderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.bind(newsList[position], newsCallback)
     }
 

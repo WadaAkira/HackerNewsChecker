@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.HackerNewsCheckerActivity
 import com.example.hackernewschecker.HackerNewsCheckerApplication
 import com.example.hackernewschecker.R
+import com.example.hackernewschecker.common.view.CardListDecoration
+import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.usecase.domain.News
 import com.example.hackernewschecker.util.Log
@@ -29,7 +31,7 @@ class MainFragment : Fragment(), MainContract.View {
     internal lateinit var presenter: MainContract.Presenter
 
     @Inject
-    internal lateinit var adapter: MainAdapter
+    internal lateinit var adapter: CardListAdapter
 
     companion object {
         /**
@@ -66,7 +68,7 @@ class MainFragment : Fragment(), MainContract.View {
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.also {
             it.adapter = adapter
-            it.addItemDecoration(MainDecoration())
+            it.addItemDecoration(CardListDecoration())
             it.addOnScrollListener(ScrollListener())
         }
 

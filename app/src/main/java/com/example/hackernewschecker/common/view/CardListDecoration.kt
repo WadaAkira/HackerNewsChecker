@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.main
+package com.example.hackernewschecker.common.view
 
 import android.graphics.Rect
 import android.view.View
@@ -9,7 +9,7 @@ import com.example.hackernewschecker.R
  * RecyclerView の Decoration クラス<br>
  * 最初の要素にのみ marginTop を設定するための設定
  */
-class MainDecoration : RecyclerView.ItemDecoration() {
+class CardListDecoration : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
