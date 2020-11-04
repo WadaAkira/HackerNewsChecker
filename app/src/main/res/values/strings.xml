@@ -1,6 +1,9 @@
 <resources>
     <!-- アプリ共通 -->
     <string name="app_name">Hacker News Checker</string>
+    <string name="history_name">閲覧履歴</string>
+    <string name="how_to_name">使い方</string>
+    <string name="license_name">ライセンス</string>
 
     <!-- メニュー -->
     <string name="menu_reader">三点リーダ</string>

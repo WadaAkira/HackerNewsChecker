@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
+import com.example.hackernewschecker.howto.HowToFragment
 import com.example.hackernewschecker.license.LicenseFragment
 import com.example.hackernewschecker.main.MainFragment
 
@@ -31,7 +32,6 @@ class AppActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Toolbar の設定
-        binding.toolbar.title = getString(R.string.app_name)
         setSupportActionBar(binding.toolbar)
 
         // MainFragment の設定
@@ -66,14 +66,26 @@ class AppActivity : AppCompatActivity() {
     private fun switchFragment(fragment: Fragment) {
         val fragments = supportFragmentManager.fragments
 
+        // フラグメントの切り替え前後で同じフラグメントに切り替えていないか確認する
         if (fragments.isNotEmpty()) {
             val currentFragment = fragments[0]
             when {
                 currentFragment is MainFragment && fragment is MainFragment -> return
                 currentFragment is HistoryFragment && fragment is HistoryFragment -> return
+                currentFragment is HowToFragment && fragment is HowToFragment -> return
                 currentFragment is LicenseFragment && fragment is LicenseFragment -> return
             }
         }
+
+        // 切り替えるフラグメントに応じて、ツールバーの表示を変える
+        binding.toolbar.title = getString(
+            when (fragment) {
+                is HistoryFragment -> R.string.history_name
+                is HowToFragment -> R.string.how_to_name
+                is LicenseFragment -> R.string.license_name
+                else -> R.string.app_name
+            }
+        )
 
         supportFragmentManager
             .beginTransaction()
@@ -90,8 +102,8 @@ class AppActivity : AppCompatActivity() {
                 when (menu.itemId) {
                     R.id.top -> switchFragment(MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
-                    R.id.license -> switchFragment(MainFragment.newInstance())
-                    R.id.how_to -> switchFragment(MainFragment.newInstance())
+                    R.id.how_to -> switchFragment(HowToFragment.newInstance())
+                    R.id.license -> switchFragment(LicenseFragment.newInstance())
                     R.id.official -> startWebBrowser(Uri.parse(OFFICIAL_WEB_SITE_URL))
                 }
                 true
