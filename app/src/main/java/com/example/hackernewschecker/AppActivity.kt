@@ -20,7 +20,7 @@ import com.example.hackernewschecker.main.MainFragment
  */
 class AppActivity : AppCompatActivity() {
     companion object {
-        private val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
+        private const val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
     }
 
     private lateinit var binding: HackerNewsCheckerActivityBinding
