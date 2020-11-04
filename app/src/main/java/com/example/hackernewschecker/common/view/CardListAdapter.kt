@@ -30,11 +30,29 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
         return newsList.size
     }
 
+    /**
+     * RecyclerView に表示する Hacker News の情報を登録する
+     *
+     * @param newsList 表示する Hacker News のリスト
+     */
     fun setNewsList(newsList: List<News>) {
         this.newsList += newsList
         notifyDataSetChanged()
     }
 
+    /**
+     * 指定した newsId の Hacker News の情報を破棄する
+     *
+     * @param newsId 破棄する Hacker News の id
+     */
+    fun removeNewsList(newsId: Int) {
+        newsList.removeIf { it.id == newsId }
+        notifyDataSetChanged()
+    }
+
+    /**
+     * アダプタが保持している Hacker News の情報をすべて破棄する
+     */
     fun clearNewsList() {
         newsList.clear()
         notifyDataSetChanged()
