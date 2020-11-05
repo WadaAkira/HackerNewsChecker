@@ -69,5 +69,49 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_font_size" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_top_margin"
+            android:lineSpacingExtra="@dimen/title_line_space"
+            android:padding="@dimen/small_padding"
+            android:text="@string/how_to_fourth_title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/title_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/text_line_space"
+            android:padding="@dimen/small_padding"
+            android:text="@string/how_to_fourth_info"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_font_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_top_margin"
+            android:lineSpacingExtra="@dimen/title_line_space"
+            android:padding="@dimen/small_padding"
+            android:text="@string/how_to_fifth_title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/title_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/text_line_space"
+            android:padding="@dimen/small_padding"
+            android:text="@string/how_to_fifth_info"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_font_size" />
+
+        <!-- 説明文を最後まで読んでも少しスクロールできるようにしておく -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/enough_space" />
     </LinearLayout>
 </ScrollView>

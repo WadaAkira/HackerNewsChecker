@@ -16,4 +16,7 @@
 
     <!-- タイトル前のマージン -->
     <dimen name="title_top_margin">10dp</dimen>
+
+    <!-- 説明文末尾の空白 -->
+    <dimen name="enough_space">300dp</dimen>
 </resources>
