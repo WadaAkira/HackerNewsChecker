@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.HackerNewsCheckerActivity
-import com.example.hackernewschecker.HackerNewsCheckerApplication
+import com.example.hackernewschecker.AppActivity
+import com.example.hackernewschecker.AppApplication
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.common.view.CardListDecoration
@@ -46,7 +46,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        (activity?.application as? HackerNewsCheckerApplication)
+        (activity?.application as? AppApplication)
             ?.appComponent
             ?.inject(this)
             ?: throw IllegalStateException("Application or Activity is null.")
@@ -66,7 +66,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // RecyclerView とイベントハンドリングの実装
+        // RecyclerView の設定
         binding.recyclerView.also {
             it.adapter = adapter
             it.addItemDecoration(CardListDecoration())
@@ -88,6 +88,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
             }
         }).attachToRecyclerView(binding.recyclerView)
 
+        // エラーハンドリング
         binding.errorMsg.setOnClickListener {
             adapter.clearNewsList()
             presenter.loadPage()
@@ -122,7 +123,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     }
 
     override fun transitNewsSite(url: Uri) {
-        (activity as? HackerNewsCheckerActivity)?.startWebBrowser(url)
+        (activity as? AppActivity)?.startWebBrowser(url)
     }
 
     override fun showNoneHistory() {
@@ -133,6 +134,11 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         val context = context ?: return
         adapter.removeNews(newsId)
         context.showToast(context.getString(R.string.deleted_history, title))
+
+        // すべての要素を削除した場合、履歴がないことを表示する
+        if (adapter.itemCount <= 0) {
+            showNoneHistory()
+        }
     }
 
     override fun showError(throwable: Throwable) {

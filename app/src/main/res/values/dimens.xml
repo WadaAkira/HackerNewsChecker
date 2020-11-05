@@ -9,5 +9,14 @@
     <!-- フォントサイズや行間等、フォントサイズに係る設定 -->
     <dimen name="title_font_size">17sp</dimen>
     <dimen name="title_line_space">3sp</dimen>
+    <dimen name="text_font_size">16sp</dimen>
+    <dimen name="text_line_space">2sp</dimen>
     <dimen name="info_font_size">14sp</dimen>
+    <dimen name="info_line_space">1sp</dimen>
+
+    <!-- タイトル前のマージン -->
+    <dimen name="title_top_margin">10dp</dimen>
+
+    <!-- 説明文末尾の空白 -->
+    <dimen name="enough_space">300dp</dimen>
 </resources>

@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.HackerNewsCheckerActivity
-import com.example.hackernewschecker.HackerNewsCheckerApplication
+import com.example.hackernewschecker.AppActivity
+import com.example.hackernewschecker.AppApplication
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.common.view.CardListDecoration
@@ -45,7 +45,7 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        (activity?.application as? HackerNewsCheckerApplication)
+        (activity?.application as? AppApplication)
             ?.appComponent
             ?.inject(this)
             ?: throw IllegalStateException("Application or Activity is null.")
@@ -64,6 +64,13 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // SwipeRefreshLayout の処理
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing = true
+            presenter.loadPage()
+            binding.swipeLayout.isRefreshing = false
+        }
 
         // RecyclerView とイベントハンドリングの実装
         binding.recyclerView.also {
@@ -100,12 +107,16 @@ class MainFragment : Fragment(), MainContract.View {
         binding.progress.visibility = View.GONE
     }
 
+    override fun clearNews() {
+        adapter.clearNewsList()
+    }
+
     override fun showNewsList(newsList: List<News>) {
         adapter.setNewsList(newsList)
     }
 
     override fun transitNewsSite(url: Uri) {
-        (activity as? HackerNewsCheckerActivity)?.startWebBrowser(url)
+        (activity as? AppActivity)?.startWebBrowser(url)
     }
 
     override fun showError(throwable: Throwable) {
