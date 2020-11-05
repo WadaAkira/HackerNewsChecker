@@ -12,8 +12,9 @@ import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.howto.HowToFragment
-import com.example.hackernewschecker.license.LicenseFragment
 import com.example.hackernewschecker.main.MainFragment
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
@@ -73,7 +74,6 @@ class AppActivity : AppCompatActivity() {
                 currentFragment is MainFragment && fragment is MainFragment -> return
                 currentFragment is HistoryFragment && fragment is HistoryFragment -> return
                 currentFragment is HowToFragment && fragment is HowToFragment -> return
-                currentFragment is LicenseFragment && fragment is LicenseFragment -> return
             }
         }
 
@@ -82,7 +82,6 @@ class AppActivity : AppCompatActivity() {
             when (fragment) {
                 is HistoryFragment -> R.string.history_name
                 is HowToFragment -> R.string.how_to_name
-                is LicenseFragment -> R.string.license_name
                 else -> R.string.app_name
             }
         )
@@ -103,7 +102,7 @@ class AppActivity : AppCompatActivity() {
                     R.id.top -> switchFragment(MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.how_to -> switchFragment(HowToFragment.newInstance())
-                    R.id.license -> switchFragment(LicenseFragment.newInstance())
+                    R.id.license -> startActivity(Intent(this, OssLicensesMenuActivity::class.java))
                     R.id.official -> startWebBrowser(Uri.parse(OFFICIAL_WEB_SITE_URL))
                 }
                 true
