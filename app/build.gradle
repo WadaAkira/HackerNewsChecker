@@ -12,15 +12,23 @@ android {
         applicationId "com.example.hackernewschecker"
         minSdkVersion 26
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+        versionCode generateVersionCode(versionName)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        // Debug 版の設定を引き継ぎつつ、Proguard を有効にする
+        check {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".check"
+        }
+
         release {
-            minifyEnabled false
+            // Release 用の設定（keystore）は行わない
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,6 +38,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    // ソースディレクトリを java から kotlin に変更する
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
 
     // ViewBinding を有効化
@@ -86,4 +100,10 @@ dependencies {
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
     testImplementation "io.mockk:mockk:1.10.0"
+}
+
+// versionName から versionCode を作成する
+static def generateVersionCode(String versionName) {
+    def versionArray = versionName.split("\\.")
+    return versionArray[0].toInteger() * 10000 + versionArray[1].toInteger() * 100 + versionArray[2].toInteger()
 }
