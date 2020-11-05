@@ -12,15 +12,25 @@ android {
         applicationId "com.example.hackernewschecker"
         minSdkVersion 26
         targetSdkVersion 29
-        versionCode 1
         versionName "1.0"
+        versionCode generateVersionCode(versionName)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        // debug 版の設定を引き継ぎつつ、Proguard を有効にする
+        check {
+            initWith debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".check"
+        }
+
         release {
-            minifyEnabled false
+            // 公開するアプリなので、Release 用の設定（keystore）は行わない
+            debuggable false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -32,6 +42,12 @@ android {
         jvmTarget = '1.8'
     }
 
+    // ソースディレクトリを java から kotlin に変更する
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
     // ViewBinding を有効化
     android.buildFeatures.viewBinding = true
 }
@@ -39,12 +55,12 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
     // Layout
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // dagger2
@@ -86,4 +102,10 @@ dependencies {
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
     testImplementation "io.mockk:mockk:1.10.0"
+}
+
+// versionName から versionCode を作成する
+static def generateVersionCode(String versionName) {
+    def versionArray = versionName.split("\\.")
+    return versionArray[0].toInteger() * 100 + versionArray[1].toInteger()
 }
