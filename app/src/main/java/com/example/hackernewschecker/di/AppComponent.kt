@@ -5,7 +5,8 @@ import com.example.hackernewschecker.main.MainFragment
 import javax.inject.Singleton
 
 /**
- * DI を実行するクラスを定義する
+ * DI を実行するクラスを定義する<br>
+ * DI するオブジェクトは、アプリケーションと同じ生存期間でシングルトンとして管理する
  */
 @Singleton
 @dagger.Component(
