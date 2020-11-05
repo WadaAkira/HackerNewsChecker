@@ -12,7 +12,7 @@ android {
         applicationId "com.example.hackernewschecker"
         minSdkVersion 26
         targetSdkVersion 29
-        versionName "1.0.0"
+        versionName "1.0"
         versionCode generateVersionCode(versionName)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -107,5 +107,5 @@ dependencies {
 // versionName から versionCode を作成する
 static def generateVersionCode(String versionName) {
     def versionArray = versionName.split("\\.")
-    return versionArray[0].toInteger() * 10000 + versionArray[1].toInteger() * 100 + versionArray[2].toInteger()
+    return versionArray[0].toInteger() * 100 + versionArray[1].toInteger()
 }
