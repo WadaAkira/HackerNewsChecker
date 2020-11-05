@@ -22,13 +22,14 @@ android {
         // debug 版の設定を引き継ぎつつ、Proguard を有効にする
         check {
             initWith debug
-            //minifyEnabled true
-            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             applicationIdSuffix ".check"
         }
 
         release {
             // 公開するアプリなので、Release 用の設定（keystore）は行わない
+            debuggable false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
