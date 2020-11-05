@@ -1,6 +1,7 @@
 # HackerNewsChecker とは
-作成者の Wada Akira が Android エンジニアとして、スキルを向上させるために作成した学習用の Android アプリ。
-また、Wada Akira のスキルチェック用のアプリとして利用されることも想定している。
+
+Wada Akira が Android エンジニアとして、スキルを向上させるために作成した学習用の Android アプリ。
+また、Wada Akira のスキルチェックとして利用されることも想定している。
 
 ## アプリの動作要件
 
@@ -13,23 +14,26 @@
 - アプリを起動すると、Hacker News API と接続し、API 接続時のトップ記事を取得して、アプリトップページにタイトル、著者等を一覧形式で表示する
     - Hacker News : https://news.ycombinator.com/
     - Hacker News API : https://github.com/HackerNews/API
-- 表示されているタイトルをタップすると、外部ブラウザに該当ページが表示される
+- タイトルをタップすると、外部ブラウザに該当ページが表示される
 - 外部ブラウザで開いたページは Database に履歴として保存される
-- トップページと履歴画面はツールバーで切り替えることができる
+- ツールバーの三点リーダをタップして表示するポップアップメニューから画面の切り替えができる
 - 履歴から外部ブラウザを開くことができる
 - 履歴を削除することができる
+- 使い方を一通り紹介するページを表示できる
+    - 使い方がわからない場合、まずはこちらの画面を表示すること
+- 当アプリの開発で利用しているライセンスを表示できる
 
 ## 機能要件を満たすために利用されている設計/技術
 
 ### 設計
 
 - MVP アーキテクチャ + UseCase
-    - Model のモデルとしてユースケースを利用する
+    - Model としてユースケースを利用する
     - View は画面の表示と画面遷移を行う
     - Presenter は View と Model を結合し、View と Model の結合度を弱める
         - Model の再利用性を高める
     - Presenter を Interface として定義することで、Presenter を確認するだけで画面の仕様を把握できるようにする
-    - View/Model(UseCase) も Interface として定義する
+    - View/Model も Interface として定義する
 - Repository パターン
     - API or Database or SharedPreferences 等、データアクセスの場所を Presenter から隠蔽する
     - UseCase から呼び出される
@@ -43,7 +47,9 @@
 ### 利用している技術
 
 - dagger2
-    - Context, Presenter, UseCase を DI するため
+    - Context, Presenter, UseCase, Retrofit, Database, Repository を DI するため
+    - DI するオブジェクトは、すべてアプリケーションと同一の生存期間をもたせる
+        - 実装を簡略化するため
 - kotlin
     - 安全かつ効率的なコーディング（特に NPE 対策）のため
 - coroutine
@@ -67,7 +73,7 @@
 ## アプリのライセンス
 
 MIT ライセンスを採用している。
-Wada Akira の名称を明記してもらえれば利用は自由だが、当アプリに関わる不具合について、Wada Akira は一切の責任を負わない。
+Wada Akira の名称を明記してもらえれば利用は自由だが、当アプリに関わるあらゆる不具合について、Wada Akira は一切の責任を負わない。
 また、Android OS のバージョンアップ、Android OS の退廃、OSS の非推奨化等、当アプリのメンテナンスが必要な場合も、
 Wada Akira はメンテナンスについて一切の責任を負わない。
 
