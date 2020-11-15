@@ -11,7 +11,6 @@ import org.spekframework.spek2.style.specification.describe
 import retrofit2.Retrofit
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlin.test.fail
 
 class RepositoryImplTest : Spek({
     lateinit var database: HackerNewsDatabase
