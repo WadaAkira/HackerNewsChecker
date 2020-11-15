@@ -68,7 +68,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 ## 開発環境
 
 - Mac Catalina 10.15.7
-- Android Studio 4.1 + kotlin 1.3.72
+- Android Studio 4.1 + kotlin 1.3.72 + Spek Framework Plugin 2.0.14-Studio4.1
 
 ## アプリのライセンス
 
