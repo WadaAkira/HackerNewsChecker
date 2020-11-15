@@ -41,6 +41,8 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
     - テスティングフレームワーク Spek2 とモックライブラリ MockK を導入する
         - Spek2 が最も実務経験が豊富なため
     - テストは、Repository をテスト対象とする
+        - Retrofit もテスト対象
+        - Room はテストのために context が必要になるため、テストを見送る
         - サンプルアプリのために Presenter までテスト対象にするのもいかがなものかと考えたため
 - UI テストについては作成者にノウハウがないため、実装を見送る
 
@@ -68,7 +70,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 ## 開発環境
 
 - Mac Catalina 10.15.7
-- Android Studio 4.1 + kotlin 1.3.72
+- Android Studio 4.1 + kotlin 1.3.72 + Spek Framework Plugin 2.0.14-Studio4.1
 
 ## アプリのライセンス
 
