@@ -84,7 +84,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     // OSS License
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation "com.google.android.gms:play-services-oss-licenses:$oss_licenses_version"
 }
 
 // versionName から versionCode を作成する
