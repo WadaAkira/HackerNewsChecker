@@ -1,6 +1,6 @@
 package com.example.repository.repository.api
 
-import com.example.dto.News
+import com.example.repository.repository.data.RepositoryNews
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -12,5 +12,5 @@ interface HackerNewsApi {
     suspend fun loadCurrentNewsIdList(): List<Int>
 
     @GET("item/{newsId}.json")
-    suspend fun loadNews(@Path("newsId") newsId: Int): News
+    suspend fun loadNews(@Path("newsId") newsId: Int): RepositoryNews
 }

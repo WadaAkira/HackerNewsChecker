@@ -1,7 +1,7 @@
 package com.example.repository.repository.database
 
 import androidx.room.*
-import com.example.dto.News
+import com.example.repository.repository.data.RepositoryNews
 
 /**
  * hacker_news テーブルへアクセスするクラス
@@ -9,11 +9,11 @@ import com.example.dto.News
 @Dao
 interface HackerNewsDao {
     @Query("SELECT * FROM hacker_news")
-    fun loadList(): List<News>
+    fun loadList(): List<RepositoryNews>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(news: News)
+    fun insert(news: RepositoryNews)
 
     @Delete
-    fun delete(news: News)
+    fun delete(news: RepositoryNews)
 }
