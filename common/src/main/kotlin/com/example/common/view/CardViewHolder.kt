@@ -2,13 +2,13 @@ package com.example.common.view
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common.R
-import com.example.common.databinding.MainViewholderBinding
+import com.example.common.databinding.CardViewholderBinding
 import com.example.repository.domain.News
 
 /**
  * Hacker News 一つ分の表示
  */
-class CardViewHolder(private val binding: MainViewholderBinding) :
+class CardViewHolder(private val binding: CardViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(news: News, callback: (News) -> Unit) {

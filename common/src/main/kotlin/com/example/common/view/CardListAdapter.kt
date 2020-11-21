@@ -3,7 +3,7 @@ package com.example.common.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common.databinding.MainViewholderBinding
+import com.example.common.databinding.CardViewholderBinding
 import com.example.repository.domain.News
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(
-            MainViewholderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CardViewholderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
