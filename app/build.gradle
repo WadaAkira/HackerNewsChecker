@@ -45,6 +45,7 @@ dependencies {
     // Module
     implementation project(':dto')
     implementation project(':view_common')
+    implementation project(':how_to')
     implementation project(':usecase')
     implementation project(':repository')
 

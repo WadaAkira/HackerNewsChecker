@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
-import com.example.hackernewschecker.howto.HowToFragment
+import com.example.howto.HowToFragment
 import com.example.hackernewschecker.main.MainFragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
@@ -73,7 +73,7 @@ class AppActivity : AppCompatActivity() {
             when {
                 currentFragment is MainFragment && fragment is MainFragment -> return
                 currentFragment is HistoryFragment && fragment is HistoryFragment -> return
-                currentFragment is HowToFragment && fragment is HowToFragment -> return
+                currentFragment is com.example.howto.HowToFragment && fragment is com.example.howto.HowToFragment -> return
             }
         }
 
@@ -81,7 +81,7 @@ class AppActivity : AppCompatActivity() {
         binding.toolbar.title = getString(
             when (fragment) {
                 is HistoryFragment -> R.string.history_name
-                is HowToFragment -> R.string.how_to_name
+                is com.example.howto.HowToFragment -> R.string.how_to_name
                 else -> R.string.app_name
             }
         )
@@ -101,7 +101,7 @@ class AppActivity : AppCompatActivity() {
                 when (menu.itemId) {
                     R.id.top -> switchFragment(MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
-                    R.id.how_to -> switchFragment(HowToFragment.newInstance())
+                    R.id.how_to -> switchFragment(com.example.howto.HowToFragment.newInstance())
                     R.id.license -> startActivity(Intent(this, OssLicensesMenuActivity::class.java))
                     R.id.official -> startWebBrowser(Uri.parse(OFFICIAL_WEB_SITE_URL))
                 }

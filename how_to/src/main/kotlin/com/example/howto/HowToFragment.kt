@@ -1,11 +1,11 @@
-package com.example.hackernewschecker.howto
+package com.example.howto
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.hackernewschecker.databinding.HowToFragmentBinding
+import com.example.howto.databinding.HowToFragmentBinding
 
 /**
  * 使い方を表示するフラグメント
