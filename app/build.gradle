@@ -57,7 +57,7 @@ dependencies {
     // Layout
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
     // dagger2
     def dagger_version = '2.29.1'
