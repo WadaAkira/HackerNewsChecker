@@ -30,6 +30,9 @@ android {
 }
 
 dependencies {
+    // module
+    implementation project(":view_common")
+
     // base
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$core_ktx_version"

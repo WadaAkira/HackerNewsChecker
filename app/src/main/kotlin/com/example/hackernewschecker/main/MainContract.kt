@@ -33,7 +33,7 @@ interface MainContract {
          *
          * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(news: com.example.dto.News)
+        fun openNewsSite(news: News)
 
         /**
          * プレゼンターの処理を解放する
@@ -65,7 +65,7 @@ interface MainContract {
          *
          * @param newsList 表示する Hacker News のリスト
          */
-        fun showNewsList(newsList: List<com.example.dto.News>)
+        fun showNewsList(newsList: List<News>)
 
         /**
          * Hacker News の対象ページを表示する

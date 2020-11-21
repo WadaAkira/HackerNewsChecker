@@ -11,7 +11,7 @@ import com.example.dto.News
 class CardViewHolder(private val binding: CardViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(news: com.example.dto.News, callback: (com.example.dto.News) -> Unit) {
+    fun bind(news: News, callback: (News) -> Unit) {
         // 表示を制御
         val context = itemView.context
         binding.also {

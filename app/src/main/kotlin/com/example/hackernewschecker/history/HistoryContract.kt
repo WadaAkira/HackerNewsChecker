@@ -28,14 +28,14 @@ interface HistoryContract {
          *
          * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(news: com.example.dto.News)
+        fun openNewsSite(news: News)
 
         /**
          * 履歴を削除する
          *
          * @param news 削除する履歴
          */
-        fun deleteHistory(news: com.example.dto.News)
+        fun deleteHistory(news: News)
 
         /**
          * プレゼンターの処理を解放する
@@ -62,7 +62,7 @@ interface HistoryContract {
          *
          * @param historyList 表示する Hacker News のリスト
          */
-        fun showHistoryList(historyList: List<com.example.dto.News>)
+        fun showHistoryList(historyList: List<News>)
 
         /**
          * Hacker News の対象ページを表示する
