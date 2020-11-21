@@ -1,3 +1,4 @@
+include ':dto'
 include ':view_common'
 include ':usecase'
 include ':app'
