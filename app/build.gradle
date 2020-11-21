@@ -12,8 +12,6 @@ android {
         applicationId "com.example.hackernewschecker"
         versionName "1.1"
         versionCode generateVersionCode(versionName)
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -96,15 +94,6 @@ dependencies {
 
     // OSS License
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
-
-    // Test
-    def spek_version = "2.0.13"
-    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1'
-    testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
-    testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
-    testImplementation "io.mockk:mockk:1.10.0"
 }
 
 // versionName から versionCode を作成する
