@@ -36,5 +36,5 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
     // Layout
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 }

@@ -43,7 +43,7 @@ dependencies {
 
     // Layout
     implementation "com.google.android.material:material:$material_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
     // dagger2
     def dagger_version = '2.29.1'
