@@ -28,12 +28,12 @@ android {
 
 dependencies {
     // Module
-    implementation project(':dto')
-    implementation project(':repository')
+    implementation project(":dto")
+    implementation project(":repository")
 
     // base
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation "androidx.core:core-ktx:$core_ktx_version"
 
     // dagger2
     def dagger_version = '2.29.1'
