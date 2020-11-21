@@ -61,9 +61,9 @@ dependencies {
 
     // Test
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
-    testImplementation "io.mockk:mockk:1.10.0"
+    testImplementation "io.mockk:mockk:$mockk_version"
 }
