@@ -1,5 +1,6 @@
-package com.example.hackernewschecker.usecase.repository.api
+package com.example.repository.api
 
+import com.example.repository.repository.api.HackerNewsApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking

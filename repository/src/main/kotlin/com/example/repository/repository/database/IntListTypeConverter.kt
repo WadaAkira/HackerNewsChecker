@@ -1,7 +1,6 @@
-package com.example.hackernewschecker.usecase.repository.database
+package com.example.repository.repository.database
 
 import androidx.room.TypeConverter
-import com.example.hackernewschecker.util.Log
 import com.squareup.moshi.Moshi
 
 /**
@@ -15,7 +14,7 @@ class IntListTypeConverter {
             try {
                 adapter.toJson(it)
             } catch (throwable: Throwable) {
-                Log.e("Could not serialize. ${throwable.message}")
+                // Log.e("Could not serialize. ${throwable.message}")
                 null
             }
         }
@@ -28,7 +27,7 @@ class IntListTypeConverter {
             try {
                 adapter.fromJson(it)
             } catch (throwable: Throwable) {
-                Log.e("Could not deserialize. ${throwable.message}")
+                // Log.e("Could not deserialize. ${throwable.message}")
                 null
             }
         }

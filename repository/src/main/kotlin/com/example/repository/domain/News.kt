@@ -1,9 +1,9 @@
-package com.example.hackernewschecker.usecase.domain
+package com.example.repository.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.hackernewschecker.usecase.repository.database.IntListTypeConverter
+import com.example.repository.repository.database.IntListTypeConverter
 
 /**
  * Hacker News API と通信した時のレスポンスを保持するクラス<br>

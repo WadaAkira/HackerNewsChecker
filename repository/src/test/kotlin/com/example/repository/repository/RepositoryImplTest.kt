@@ -1,9 +1,10 @@
-package com.example.hackernewschecker.usecase.repository.impl
+package com.example.repository.repository
 
-import com.example.hackernewschecker.usecase.domain.News
-import com.example.hackernewschecker.usecase.repository.api.HackerNewsApi
-import com.example.hackernewschecker.usecase.repository.database.HackerNewsDao
-import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
+import com.example.repository.domain.News
+import com.example.repository.repository.api.HackerNewsApi
+import com.example.repository.repository.database.HackerNewsDao
+import com.example.repository.repository.database.HackerNewsDatabase
+import com.example.repository.repository.impl.RepositoryImpl
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.spekframework.spek2.Spek
@@ -49,7 +50,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadCurrentNewsIdList()
             } returns testList
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val result = runBlocking {
                 repository.loadCurrentNewsIdList()
@@ -66,7 +71,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadCurrentNewsIdList()
             } throws exception
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val isCaught = try {
                 runBlocking {
@@ -92,7 +101,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadNews(testNewsId)
             } returns news
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val result = runBlocking {
                 repository.loadNews(testNewsId)
@@ -109,7 +122,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadNews(testNewsId)
             } throws exception
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val isCaught = try {
                 runBlocking {
@@ -135,7 +152,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.insert(news)
             } returns Unit
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             runBlocking {
                 repository.insertNews(news)
@@ -150,7 +171,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.insert(news)
             } throws exception
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val isCaught = try {
                 runBlocking {
@@ -177,7 +202,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.loadList()
             } returns testList
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val result = runBlocking {
                 repository.loadHistoryList()
@@ -194,7 +223,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.loadList()
             } throws exception
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val isCaught = try {
                 runBlocking {
@@ -219,7 +252,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.delete(news)
             } returns Unit
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             runBlocking {
                 repository.deleteHistory(news)
@@ -234,7 +271,11 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.delete(news)
             } throws exception
 
-            val repository = RepositoryImpl(database, retrofit)
+            val repository =
+                RepositoryImpl(
+                    database,
+                    retrofit
+                )
 
             val isCaught = try {
                 runBlocking {

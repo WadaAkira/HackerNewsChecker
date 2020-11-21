@@ -37,6 +37,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 - Repository パターン
     - API or Database or SharedPreferences 等、データアクセスの場所を Presenter から隠蔽する
     - UseCase から呼び出される
+- Repository を独立したモジュールとして作成する
 - 単体テスト
     - テスティングフレームワーク Spek2 とモックライブラリ MockK を導入する
         - Spek2 が最も実務経験が豊富なため

@@ -1,9 +1,9 @@
-package com.example.hackernewschecker.usecase.repository.impl
+package com.example.repository.repository.impl
 
-import com.example.hackernewschecker.usecase.domain.News
-import com.example.hackernewschecker.usecase.repository.Repository
-import com.example.hackernewschecker.usecase.repository.api.HackerNewsApi
-import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
+import com.example.repository.domain.News
+import com.example.repository.repository.Repository
+import com.example.repository.repository.api.HackerNewsApi
+import com.example.repository.repository.database.HackerNewsDatabase
 import retrofit2.Retrofit
 import javax.inject.Inject
 

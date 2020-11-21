@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.usecase
 
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.repository.domain.News
 
 /**
  * 表示履歴に係るユースケース

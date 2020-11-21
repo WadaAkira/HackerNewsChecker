@@ -11,9 +11,9 @@ import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
 import com.example.hackernewschecker.usecase.impl.HistoryUseCaseImpl
-import com.example.hackernewschecker.usecase.repository.Repository
-import com.example.hackernewschecker.usecase.repository.database.HackerNewsDatabase
-import com.example.hackernewschecker.usecase.repository.impl.RepositoryImpl
+import com.example.repository.repository.Repository
+import com.example.repository.repository.database.HackerNewsDatabase
+import com.example.repository.repository.impl.RepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.databinding.MainViewholderBinding
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.repository.domain.News
 import javax.inject.Inject
 
 /**

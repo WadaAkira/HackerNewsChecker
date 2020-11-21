@@ -3,7 +3,7 @@ package com.example.hackernewschecker.main
 import android.net.Uri
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.HistoryUseCase
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.repository.domain.News
 import com.example.hackernewschecker.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject

@@ -1,6 +1,6 @@
-package com.example.hackernewschecker.usecase.repository.api
+package com.example.repository.repository.api
 
-import com.example.hackernewschecker.usecase.domain.News
+import com.example.repository.domain.News
 import retrofit2.http.GET
 import retrofit2.http.Path
 
