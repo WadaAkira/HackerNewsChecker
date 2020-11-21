@@ -1,3 +1,4 @@
+include ':usecase'
 include ':app'
 include ':repository'
 rootProject.name = "Hacker News Checker"
