@@ -1,7 +1,6 @@
-package com.example.hackernewschecker.history
+package com.example.history
 
 import android.net.Uri
-import com.example.dto.News
 
 /**
  * 履歴画面の実装規約

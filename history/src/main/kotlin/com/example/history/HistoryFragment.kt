@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.history
+package com.example.history
 
 import android.content.Context
 import android.net.Uri
@@ -17,12 +17,13 @@ import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.common.util.Log
 import com.example.common.util.showToast
+import com.example.history.databinding.HistoryFragmentBinding
 import javax.inject.Inject
 
 /**
  * 履歴画面を表示するフラグメント
  */
-class HistoryFragment : Fragment(), HistoryContract.View {
+class HistoryFragment : Fragment(), com.example.history.HistoryContract.View {
     private var _binding: HistoryFragmentBinding? = null
     private val binding
         get() = _binding ?: throw IllegalStateException("HistoryFragmentBinding is null.")

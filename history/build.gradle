@@ -32,6 +32,7 @@ android {
 dependencies {
     // Module
     implementation project(":dto")
+    implementation project(":usecase")
     implementation project(":view_common")
 
     // base
