@@ -28,7 +28,8 @@ android {
 
 dependencies {
     // Module
-    implementation project(":repository")
+    implementation project(':dto')
+    implementation project(':repository')
 
     // base
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

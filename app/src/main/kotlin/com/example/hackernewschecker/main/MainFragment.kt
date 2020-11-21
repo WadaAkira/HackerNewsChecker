@@ -16,7 +16,7 @@ import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.util.Log
 import com.example.common.util.showToast
-import com.example.repository.domain.News
+import com.example.dto.News
 import javax.inject.Inject
 
 /**
@@ -111,7 +111,7 @@ class MainFragment : Fragment(), MainContract.View {
         adapter.clearNewsList()
     }
 
-    override fun showNewsList(newsList: List<News>) {
+    override fun showNewsList(newsList: List<com.example.dto.News>) {
         adapter.setNewsList(newsList)
     }
 

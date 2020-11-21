@@ -1,9 +1,8 @@
-package com.example.repository.domain
+package com.example.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.repository.repository.database.IntListTypeConverter
 
 /**
  * Hacker News API と通信した時のレスポンスを保持するクラス<br>

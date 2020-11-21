@@ -17,7 +17,7 @@ import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.hackernewschecker.util.Log
 import com.example.common.util.showToast
-import com.example.repository.domain.News
+import com.example.dto.News
 import javax.inject.Inject
 
 /**
@@ -118,7 +118,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         binding.progress.visibility = View.GONE
     }
 
-    override fun showHistoryList(historyList: List<News>) {
+    override fun showHistoryList(historyList: List<com.example.dto.News>) {
         adapter.setNewsList(historyList)
     }
 

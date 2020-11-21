@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common.databinding.CardViewholderBinding
-import com.example.repository.domain.News
+import com.example.dto.News
 import javax.inject.Inject
 
 /**
  * 起動時画面の RecyclerView のアダプタ
  */
 class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolder>() {
-    private val newsList: MutableList<News> = mutableListOf()
+    private val newsList: MutableList<com.example.dto.News> = mutableListOf()
 
     // Hacker News タップ時のコールバック
-    var newsCallback: (News) -> Unit = { _ -> }
+    var newsCallback: (com.example.dto.News) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(
@@ -35,7 +35,7 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
      *
      * @param newsList 表示する Hacker News のリスト
      */
-    fun setNewsList(newsList: List<News>) {
+    fun setNewsList(newsList: List<com.example.dto.News>) {
         this.newsList += newsList
         notifyDataSetChanged()
     }
@@ -46,7 +46,7 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
      * @param index インデックス
      * @return インデックスに対応した News オブジェクト/取得できない場合は null
      */
-    fun getNews(index: Int): News? {
+    fun getNews(index: Int): com.example.dto.News? {
         return if (newsList.size <= index) {
             null
         } else {

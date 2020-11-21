@@ -1,6 +1,6 @@
 package com.example.repository.repository.api
 
-import com.example.repository.domain.News
+import com.example.dto.News
 import retrofit2.http.GET
 import retrofit2.http.Path
 

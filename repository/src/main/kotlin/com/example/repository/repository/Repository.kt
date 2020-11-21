@@ -1,6 +1,6 @@
 package com.example.repository.repository
 
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * アプリのデータアクセスを一元管理する

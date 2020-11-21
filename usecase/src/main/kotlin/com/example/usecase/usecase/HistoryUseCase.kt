@@ -1,6 +1,6 @@
 package com.example.usecase.usecase
 
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * 表示履歴に係るユースケース
@@ -12,19 +12,19 @@ interface HistoryUseCase {
      *
      * @param news 保存する Hacker News
      */
-    suspend fun insert(news: News)
+    suspend fun insert(news: com.example.dto.News)
 
     /**
      * 表示履歴をすべて取得する
      *
      * @return 表示履歴一覧
      */
-    suspend fun loadList(): List<News>
+    suspend fun loadList(): List<com.example.dto.News>
 
     /**
      * 表示履歴を削除する
      *
      * @param news 削除する履歴
      */
-    suspend fun delete(news: News)
+    suspend fun delete(news: com.example.dto.News)
 }

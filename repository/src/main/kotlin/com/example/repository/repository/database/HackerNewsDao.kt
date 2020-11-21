@@ -1,7 +1,7 @@
 package com.example.repository.repository.database
 
 import androidx.room.*
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * hacker_news テーブルへアクセスするクラス

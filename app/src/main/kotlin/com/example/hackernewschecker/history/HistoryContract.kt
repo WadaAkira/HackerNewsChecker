@@ -1,7 +1,7 @@
 package com.example.hackernewschecker.history
 
 import android.net.Uri
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * 履歴画面の実装規約
@@ -28,14 +28,14 @@ interface HistoryContract {
          *
          * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(news: News)
+        fun openNewsSite(news: com.example.dto.News)
 
         /**
          * 履歴を削除する
          *
          * @param news 削除する履歴
          */
-        fun deleteHistory(news: News)
+        fun deleteHistory(news: com.example.dto.News)
 
         /**
          * プレゼンターの処理を解放する
@@ -62,7 +62,7 @@ interface HistoryContract {
          *
          * @param historyList 表示する Hacker News のリスト
          */
-        fun showHistoryList(historyList: List<News>)
+        fun showHistoryList(historyList: List<com.example.dto.News>)
 
         /**
          * Hacker News の対象ページを表示する

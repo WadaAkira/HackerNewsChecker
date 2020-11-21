@@ -1,7 +1,7 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * 起動画面の実装規約
@@ -33,7 +33,7 @@ interface MainContract {
          *
          * @param news 開く Hacker News の情報
          */
-        fun openNewsSite(news: News)
+        fun openNewsSite(news: com.example.dto.News)
 
         /**
          * プレゼンターの処理を解放する
@@ -65,7 +65,7 @@ interface MainContract {
          *
          * @param newsList 表示する Hacker News のリスト
          */
-        fun showNewsList(newsList: List<News>)
+        fun showNewsList(newsList: List<com.example.dto.News>)
 
         /**
          * Hacker News の対象ページを表示する

@@ -1,6 +1,6 @@
 package com.example.repository.repository.impl
 
-import com.example.repository.domain.News
+import com.example.dto.News
 import com.example.repository.repository.Repository
 import com.example.repository.repository.api.HackerNewsApi
 import com.example.repository.repository.database.HackerNewsDatabase

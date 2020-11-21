@@ -3,7 +3,7 @@ package com.example.common.view
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common.R
 import com.example.common.databinding.CardViewholderBinding
-import com.example.repository.domain.News
+import com.example.dto.News
 
 /**
  * Hacker News 一つ分の表示
@@ -11,7 +11,7 @@ import com.example.repository.domain.News
 class CardViewHolder(private val binding: CardViewholderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(news: News, callback: (News) -> Unit) {
+    fun bind(news: com.example.dto.News, callback: (com.example.dto.News) -> Unit) {
         // 表示を制御
         val context = itemView.context
         binding.also {
