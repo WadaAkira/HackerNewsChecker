@@ -38,7 +38,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx_version"
 
     // coroutine
-    def coroutine_version = '1.3.9'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     // Layout
