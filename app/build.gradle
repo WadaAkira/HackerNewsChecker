@@ -55,7 +55,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
     // Layout
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation "com.google.android.material:material:$material_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
