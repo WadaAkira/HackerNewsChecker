@@ -50,7 +50,7 @@ android {
 
 dependencies {
     // Module
-    implementation project(":common")
+    implementation project(':view_common')
     implementation project(":usecase")
     implementation project(":repository")
 

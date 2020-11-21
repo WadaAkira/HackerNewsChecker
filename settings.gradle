@@ -1,4 +1,4 @@
-include ':common'
+include ':view_common'
 include ':usecase'
 include ':app'
 include ':repository'
