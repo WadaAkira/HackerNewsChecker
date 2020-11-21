@@ -15,9 +15,8 @@ import com.example.hackernewschecker.R
 import com.example.common.view.CardListAdapter
 import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
-import com.example.hackernewschecker.util.Log
+import com.example.common.util.Log
 import com.example.common.util.showToast
-import com.example.dto.News
 import javax.inject.Inject
 
 /**

@@ -1,6 +1,6 @@
 package com.example.repository.util
 
-import com.example.dto.BuildConfig
+import com.example.repository.BuildConfig
 
 /**
  * ロギング用のユーティリティ

@@ -1,3 +1,4 @@
+include ':how_to'
 include ':dto'
 include ':view_common'
 include ':usecase'
