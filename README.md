@@ -37,6 +37,13 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 - Repository パターン
     - API or Database or SharedPreferences 等、データアクセスの場所を Presenter から隠蔽する
     - UseCase から呼び出される
+- 以下の機能を独立したモジュールとして作成する
+    - Repository: データアクセス
+    - dto: モジュール間のデータ転送用オブジェクトを定義する
+    - usecase: プレゼンターが利用するユースケース
+    - how_to: 使い方画面
+    - view_common: 起動時画面、履歴画面共通の素材/ユーティリティ
+    - app: 起動時アクティビティ/DI の制御/起動時画面/履歴画面
 - 単体テスト
     - テスティングフレームワーク Spek2 とモックライブラリ MockK を導入する
         - Spek2 が最も実務経験が豊富なため

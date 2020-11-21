@@ -1,10 +1,9 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
-import com.example.hackernewschecker.usecase.HackerNewsUseCase
-import com.example.hackernewschecker.usecase.HistoryUseCase
-import com.example.hackernewschecker.usecase.domain.News
-import com.example.hackernewschecker.util.addTo
+import com.example.usecase.HackerNewsUseCase
+import com.example.usecase.HistoryUseCase
+import com.example.common.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -111,7 +110,7 @@ class MainPresenter @Inject constructor(
         view.showNewsList(responseList)
     }
 
-    override fun openNewsSite(news: News) {
+    override fun openNewsSite(news: com.example.dto.News) {
         // 通信中は画面遷移しないようにする
         if (isLoading) {
             return

@@ -64,4 +64,4 @@
 -keep,allowobfuscation interface <1>
 
 # Entity
--keep class com.example.hackernewschecker.usecase.domain.News { *; }
+-keep class com.example.repository.data.RepositoryNews { *; }
