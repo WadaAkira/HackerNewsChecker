@@ -1,10 +1,10 @@
 package com.example.hackernewschecker.history
 
 import android.net.Uri
-import com.example.hackernewschecker.usecase.HistoryUseCase
-import com.example.repository.domain.News
 import com.example.hackernewschecker.util.addTo
 import com.example.hackernewschecker.util.toEmptyOrString
+import com.example.repository.domain.News
+import com.example.usecase.usecase.HistoryUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

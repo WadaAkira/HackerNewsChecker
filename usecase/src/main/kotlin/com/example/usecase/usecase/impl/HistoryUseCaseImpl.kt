@@ -1,11 +1,12 @@
-package com.example.hackernewschecker.usecase.impl
+package com.example.usecase.usecase.impl
 
-import com.example.hackernewschecker.usecase.HistoryUseCase
+import com.example.usecase.usecase.HistoryUseCase
 import com.example.repository.domain.News
 import com.example.repository.repository.Repository
 import javax.inject.Inject
 
-class HistoryUseCaseImpl @Inject constructor(private val repository: Repository) : HistoryUseCase {
+class HistoryUseCaseImpl @Inject constructor(private val repository: Repository) :
+    HistoryUseCase {
     override suspend fun insert(news: News) {
         repository.insertNews(news)
     }

@@ -36,9 +36,19 @@ android {
 }
 
 dependencies {
+    // Module
+    implementation project(":repository")
+
     // base
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    
 
+    // dagger2
+    def dagger_version = '2.29.1'
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // coroutine
+    def coroutine_version = '1.3.9'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 }

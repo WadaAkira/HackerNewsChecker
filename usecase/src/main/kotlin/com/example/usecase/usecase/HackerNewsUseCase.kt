@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.usecase
+package com.example.usecase.usecase
 
 import com.example.repository.domain.News
 

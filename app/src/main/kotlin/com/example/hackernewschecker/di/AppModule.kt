@@ -7,10 +7,10 @@ import com.example.hackernewschecker.history.HistoryContract
 import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
-import com.example.hackernewschecker.usecase.HackerNewsUseCase
-import com.example.hackernewschecker.usecase.HistoryUseCase
-import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
-import com.example.hackernewschecker.usecase.impl.HistoryUseCaseImpl
+import com.example.usecase.usecase.HackerNewsUseCase
+import com.example.usecase.usecase.HistoryUseCase
+import com.example.usecase.usecase.impl.HackerNewsUseCaseImpl
+import com.example.usecase.usecase.impl.HistoryUseCaseImpl
 import com.example.repository.repository.Repository
 import com.example.repository.repository.database.HackerNewsDatabase
 import com.example.repository.repository.impl.RepositoryImpl
