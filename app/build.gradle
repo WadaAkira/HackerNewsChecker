@@ -10,7 +10,7 @@ apply from: rootProject.file("android_common.gradle")
 android {
     defaultConfig {
         applicationId "com.example.hackernewschecker"
-        versionName "1.0"
+        versionName "1.1"
         versionCode generateVersionCode(versionName)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
