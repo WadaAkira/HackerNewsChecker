@@ -15,6 +15,7 @@ buildscript {
     ext.room_version = "2.2.5"
     ext.oss_licenses_version = "17.0.0"
     ext.spek_version = "2.0.13"
+    ext.coroutines_test = "1.4.1"
 
     repositories {
         google()
