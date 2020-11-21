@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.di
 
-import com.example.history.HistoryFragment
+import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.main.MainFragment
 import javax.inject.Singleton
 
@@ -14,5 +14,5 @@ import javax.inject.Singleton
 )
 interface AppComponent {
     fun inject(fragment: MainFragment)
-    fun inject(fragment: com.example.history.HistoryFragment)
+    fun inject(fragment: HistoryFragment)
 }

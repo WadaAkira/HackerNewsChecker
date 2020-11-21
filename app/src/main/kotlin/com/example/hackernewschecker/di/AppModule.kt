@@ -3,8 +3,8 @@ package com.example.hackernewschecker.di
 import android.content.Context
 import androidx.room.Room
 import com.example.hackernewschecker.BuildConfig
-import com.example.history.HistoryContract
-import com.example.history.HistoryPresenter
+import com.example.hackernewschecker.history.HistoryContract
+import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
 import com.example.usecase.HackerNewsUseCase
@@ -88,7 +88,7 @@ class AppModule(applicationContext: Context) {
 
     @Singleton
     @Provides
-    fun provideHistoryPresenter(presenter: com.example.history.HistoryPresenter): com.example.history.HistoryContract.Presenter {
+    fun provideHistoryPresenter(presenter: HistoryPresenter): HistoryContract.Presenter {
         return presenter
     }
 

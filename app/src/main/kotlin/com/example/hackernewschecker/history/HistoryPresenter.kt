@@ -1,4 +1,4 @@
-package com.example.history
+package com.example.hackernewschecker.history
 
 import android.net.Uri
 import com.example.common.util.addTo
