@@ -1,9 +1,9 @@
-package com.example.hackernewschecker.common.view
+package com.example.common.view
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.R
+import com.example.common.R
 
 /**
  * RecyclerView の Decoration クラス<br>

@@ -1,4 +1,4 @@
-package com.example.hackernewschecker.util
+package com.example.common.util
 
 import android.content.Context
 import android.widget.Toast

@@ -4,7 +4,7 @@ import android.net.Uri
 import com.example.usecase.usecase.HackerNewsUseCase
 import com.example.usecase.usecase.HistoryUseCase
 import com.example.repository.domain.News
-import com.example.hackernewschecker.util.addTo
+import com.example.common.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

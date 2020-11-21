@@ -1,8 +1,8 @@
-package com.example.hackernewschecker.common.view
+package com.example.common.view
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.R
-import com.example.hackernewschecker.databinding.MainViewholderBinding
+import com.example.common.R
+import com.example.common.databinding.MainViewholderBinding
 import com.example.repository.domain.News
 
 /**

@@ -1,8 +1,8 @@
 package com.example.hackernewschecker.history
 
 import android.net.Uri
-import com.example.hackernewschecker.util.addTo
-import com.example.hackernewschecker.util.toEmptyOrString
+import com.example.common.util.addTo
+import com.example.common.util.toEmptyOrString
 import com.example.repository.domain.News
 import com.example.usecase.usecase.HistoryUseCase
 import kotlinx.coroutines.*
