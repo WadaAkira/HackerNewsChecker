@@ -1,2 +1,8 @@
-include ':app'
+include ':dto', ':repository', ':usecase', ':how_to', ':view_common', ':app'
 rootProject.name = "Hacker News Checker"
+
+project(':dto').projectDir = file('features/dto')
+project(':repository').projectDir = file('features/data/repository')
+project(':usecase').projectDir = file('features/data/usecase')
+project(':how_to').projectDir = file('features/views/how_to')
+project(':view_common').projectDir = file('features/views/view_common')

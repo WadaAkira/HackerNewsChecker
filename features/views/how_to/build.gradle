@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+apply from: rootProject.file("android_common.gradle")
+
+android {
+    buildTypes {
+        check {
+            initWith debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // ソースディレクトリを java から kotlin に変更する
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    // ViewBinding を有効化
+    android.buildFeatures.viewBinding = true
+}
+
+dependencies {
+    // module
+    implementation project(":view_common")
+
+    // base
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+
+    // Layout
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+}

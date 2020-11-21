@@ -12,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hackernewschecker.AppActivity
 import com.example.hackernewschecker.AppApplication
 import com.example.hackernewschecker.R
-import com.example.hackernewschecker.common.view.CardListAdapter
-import com.example.hackernewschecker.common.view.CardListDecoration
+import com.example.common.view.CardListAdapter
+import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
-import com.example.hackernewschecker.usecase.domain.News
-import com.example.hackernewschecker.util.Log
-import com.example.hackernewschecker.util.showToast
+import com.example.common.util.Log
+import com.example.common.util.showToast
 import javax.inject.Inject
 
 /**
@@ -118,7 +117,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         binding.progress.visibility = View.GONE
     }
 
-    override fun showHistoryList(historyList: List<News>) {
+    override fun showHistoryList(historyList: List<com.example.dto.News>) {
         adapter.setNewsList(historyList)
     }
 

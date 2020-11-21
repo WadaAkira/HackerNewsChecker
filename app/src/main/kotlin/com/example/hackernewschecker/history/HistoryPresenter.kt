@@ -1,10 +1,9 @@
 package com.example.hackernewschecker.history
 
 import android.net.Uri
-import com.example.hackernewschecker.usecase.HistoryUseCase
-import com.example.hackernewschecker.usecase.domain.News
-import com.example.hackernewschecker.util.addTo
-import com.example.hackernewschecker.util.toEmptyOrString
+import com.example.common.util.addTo
+import com.example.common.util.toEmptyOrString
+import com.example.usecase.HistoryUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -50,7 +49,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
         }.addTo(jobList)
     }
 
-    override fun openNewsSite(news: News) {
+    override fun openNewsSite(news: com.example.dto.News) {
         // 通信中は画面遷移しないようにする
         if (isLoading) {
             return
@@ -72,7 +71,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
         view.transitNewsSite(uri)
     }
 
-    override fun deleteHistory(news: News) {
+    override fun deleteHistory(news: com.example.dto.News) {
         val job = launch(exceptionHandler) {
             withContext(Dispatchers.IO) {
                 useCase.delete(news)

@@ -11,10 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
-import com.example.hackernewschecker.howto.HowToFragment
 import com.example.hackernewschecker.main.MainFragment
+import com.example.howto.HowToFragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
