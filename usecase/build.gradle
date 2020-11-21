@@ -20,15 +20,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
     // ソースディレクトリを java から kotlin に変更する
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
