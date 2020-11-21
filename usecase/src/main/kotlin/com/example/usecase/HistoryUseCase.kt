@@ -1,6 +1,4 @@
-package com.example.usecase.usecase
-
-import com.example.dto.News
+package com.example.usecase
 
 /**
  * 表示履歴に係るユースケース

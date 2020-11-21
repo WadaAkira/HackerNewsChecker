@@ -1,6 +1,4 @@
-package com.example.usecase.usecase
-
-import com.example.dto.News
+package com.example.usecase
 
 /**
  * HackerNews API と通信するユースケース

@@ -1,7 +1,7 @@
-package com.example.repository.repository.data
+package com.example.repository.data
 
 import androidx.room.TypeConverter
-import com.example.repository.repository.util.Log
+import com.example.repository.util.Log
 import com.squareup.moshi.Moshi
 
 /**

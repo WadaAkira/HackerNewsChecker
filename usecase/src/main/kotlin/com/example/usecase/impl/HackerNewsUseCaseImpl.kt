@@ -1,8 +1,7 @@
-package com.example.usecase.usecase.impl
+package com.example.usecase.impl
 
-import com.example.usecase.usecase.HackerNewsUseCase
-import com.example.dto.News
-import com.example.repository.repository.Repository
+import com.example.usecase.HackerNewsUseCase
+import com.example.repository.Repository
 import javax.inject.Inject
 
 class HackerNewsUseCaseImpl @Inject constructor(private val repository: Repository) :

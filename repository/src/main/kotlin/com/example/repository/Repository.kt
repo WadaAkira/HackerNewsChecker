@@ -1,4 +1,4 @@
-package com.example.repository.repository
+package com.example.repository
 
 import com.example.dto.News
 

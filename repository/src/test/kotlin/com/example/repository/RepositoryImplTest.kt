@@ -1,16 +1,18 @@
-package com.example.repository.repository
+package com.example.repository
 
 import com.example.dto.News
-import com.example.repository.repository.api.HackerNewsApi
-import com.example.repository.repository.database.HackerNewsDao
-import com.example.repository.repository.database.HackerNewsDatabase
-import com.example.repository.repository.impl.RepositoryImpl
+import com.example.repository.api.HackerNewsApi
+import com.example.repository.data.RepositoryNews
+import com.example.repository.database.HackerNewsDao
+import com.example.repository.database.HackerNewsDatabase
+import com.example.repository.impl.RepositoryImpl
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import retrofit2.Retrofit
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class RepositoryImplTest : Spek({
@@ -18,9 +20,32 @@ class RepositoryImplTest : Spek({
     lateinit var retrofit: Retrofit
     lateinit var hackerNewsApi: HackerNewsApi
     lateinit var hackerNewsDao: HackerNewsDao
-    lateinit var news: News
 
     val testNewsId = 10
+    val testIntValue = 100
+    val testString = "Test"
+    val testRepositoryNews = RepositoryNews(
+        id = testNewsId,
+        by = testString,
+        descendants = testIntValue,
+        kids = listOf(testIntValue),
+        score = testIntValue,
+        time = testIntValue,
+        title = testString,
+        type = testString,
+        url = testString
+    )
+    val testNews = News(
+        id = testNewsId,
+        by = testString,
+        descendants = testIntValue,
+        kids = listOf(testIntValue),
+        score = testIntValue,
+        time = testIntValue,
+        title = testString,
+        type = testString,
+        url = testString
+    )
     val exception = Exception("Test failed.")
 
     beforeEachTest {
@@ -28,7 +53,6 @@ class RepositoryImplTest : Spek({
         retrofit = mockk()
         hackerNewsApi = mockk()
         hackerNewsDao = mockk()
-        news = mockk()
 
         every {
             retrofit.create(HackerNewsApi::class.java)
@@ -50,11 +74,10 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadCurrentNewsIdList()
             } returns testList
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val result = runBlocking {
                 repository.loadCurrentNewsIdList()
@@ -71,11 +94,10 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadCurrentNewsIdList()
             } throws exception
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val isCaught = try {
                 runBlocking {
@@ -99,19 +121,31 @@ class RepositoryImplTest : Spek({
         it("Success") {
             coEvery {
                 hackerNewsApi.loadNews(testNewsId)
-            } returns news
+            } returns testRepositoryNews
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val result = runBlocking {
                 repository.loadNews(testNewsId)
             }
 
-            assertEquals(news, result)
+            assertEquals(testNewsId, result.id)
+            assertEquals(testString, result.by)
+            assertEquals(testIntValue, result.descendants)
+            assertEquals(testIntValue, result.score)
+            assertEquals(testIntValue, result.time)
+            assertEquals(testString, result.title)
+            assertEquals(testString, result.type)
+            assertEquals(testString, result.url)
+
+            val kids = result.kids
+            assertNotNull(kids)
+            assertTrue { kids.isNotEmpty() }
+            assertTrue { kids.size == 1 }
+            assertEquals(testIntValue, kids[0])
 
             coVerify {
                 hackerNewsApi.loadNews(testNewsId)
@@ -122,11 +156,10 @@ class RepositoryImplTest : Spek({
                 hackerNewsApi.loadNews(testNewsId)
             } throws exception
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val isCaught = try {
                 runBlocking {
@@ -149,37 +182,35 @@ class RepositoryImplTest : Spek({
     describe("#insertNews") {
         it("Success") {
             coEvery {
-                hackerNewsDao.insert(news)
+                hackerNewsDao.insert(any() as RepositoryNews)
             } returns Unit
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             runBlocking {
-                repository.insertNews(news)
+                repository.insertNews(testNews)
             }
 
             coVerify {
-                hackerNewsDao.insert(news)
+                hackerNewsDao.insert(any() as RepositoryNews)
             }
         }
         it("Failed") {
             coEvery {
-                hackerNewsDao.insert(news)
+                hackerNewsDao.insert(any() as RepositoryNews)
             } throws exception
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val isCaught = try {
                 runBlocking {
-                    repository.insertNews(news)
+                    repository.insertNews(testNews)
                 }
 
                 false
@@ -190,29 +221,45 @@ class RepositoryImplTest : Spek({
             assertTrue { isCaught }
 
             coVerify {
-                hackerNewsDao.insert(news)
+                hackerNewsDao.insert(any() as RepositoryNews)
             }
         }
     }
 
     describe("#loadHistoryList") {
         it("Success") {
-            val testList = listOf(news, news, news)
+            val testList = listOf(testRepositoryNews, testRepositoryNews, testRepositoryNews)
             coEvery {
                 hackerNewsDao.loadList()
             } returns testList
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val result = runBlocking {
                 repository.loadHistoryList()
             }
 
-            assertEquals(testList, result)
+            assertTrue { result.isNotEmpty() }
+            assertTrue { result.size == 3 }
+
+            val item = result[0]
+            assertEquals(testNewsId, item.id)
+            assertEquals(testString, item.by)
+            assertEquals(testIntValue, item.descendants)
+            assertEquals(testIntValue, item.score)
+            assertEquals(testIntValue, item.time)
+            assertEquals(testString, item.title)
+            assertEquals(testString, item.type)
+            assertEquals(testString, item.url)
+
+            val kids = item.kids
+            assertNotNull(kids)
+            assertTrue { kids.isNotEmpty() }
+            assertTrue { kids.size == 1 }
+            assertEquals(testIntValue, kids[0])
 
             coVerify {
                 hackerNewsDao.loadList()
@@ -223,11 +270,10 @@ class RepositoryImplTest : Spek({
                 hackerNewsDao.loadList()
             } throws exception
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val isCaught = try {
                 runBlocking {
@@ -249,37 +295,35 @@ class RepositoryImplTest : Spek({
     describe("#deleteHistory") {
         it("Success") {
             coEvery {
-                hackerNewsDao.delete(news)
+                hackerNewsDao.delete(any() as RepositoryNews)
             } returns Unit
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             runBlocking {
-                repository.deleteHistory(news)
+                repository.deleteHistory(testNews)
             }
 
             coVerify {
-                hackerNewsDao.delete(news)
+                hackerNewsDao.delete(any() as RepositoryNews)
             }
         }
         it("Failed") {
             coEvery {
-                hackerNewsDao.delete(news)
+                hackerNewsDao.delete(any() as RepositoryNews)
             } throws exception
 
-            val repository =
-                RepositoryImpl(
-                    database,
-                    retrofit
-                )
+            val repository = RepositoryImpl(
+                database,
+                retrofit
+            )
 
             val isCaught = try {
                 runBlocking {
-                    repository.deleteHistory(news)
+                    repository.deleteHistory(testNews)
                 }
                 false
             } catch (e: Throwable) {
@@ -289,7 +333,7 @@ class RepositoryImplTest : Spek({
             assertTrue { isCaught }
 
             coVerify {
-                hackerNewsDao.delete(news)
+                hackerNewsDao.delete(any() as RepositoryNews)
             }
         }
     }

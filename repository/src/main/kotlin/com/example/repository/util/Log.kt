@@ -1,4 +1,4 @@
-package com.example.repository.repository.util
+package com.example.repository.util
 
 import com.example.dto.BuildConfig
 

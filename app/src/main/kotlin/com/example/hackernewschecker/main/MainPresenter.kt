@@ -1,9 +1,8 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
-import com.example.usecase.usecase.HackerNewsUseCase
-import com.example.usecase.usecase.HistoryUseCase
-import com.example.dto.News
+import com.example.usecase.HackerNewsUseCase
+import com.example.usecase.HistoryUseCase
 import com.example.common.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject

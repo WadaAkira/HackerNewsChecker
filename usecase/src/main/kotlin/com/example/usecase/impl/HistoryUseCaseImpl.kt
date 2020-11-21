@@ -1,8 +1,7 @@
-package com.example.usecase.usecase.impl
+package com.example.usecase.impl
 
-import com.example.usecase.usecase.HistoryUseCase
-import com.example.dto.News
-import com.example.repository.repository.Repository
+import com.example.usecase.HistoryUseCase
+import com.example.repository.Repository
 import javax.inject.Inject
 
 class HistoryUseCaseImpl @Inject constructor(private val repository: Repository) :

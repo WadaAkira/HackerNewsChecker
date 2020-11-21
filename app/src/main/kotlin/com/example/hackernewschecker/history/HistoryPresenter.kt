@@ -3,7 +3,7 @@ package com.example.hackernewschecker.history
 import android.net.Uri
 import com.example.common.util.addTo
 import com.example.common.util.toEmptyOrString
-import com.example.usecase.usecase.HistoryUseCase
+import com.example.usecase.HistoryUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
