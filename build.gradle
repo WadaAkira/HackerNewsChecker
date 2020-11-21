@@ -11,6 +11,7 @@ buildscript {
     ext.okhttp_version = '4.9.0'
     ext.retrofit_ver = "2.9.0"
     ext.moshi_version = "1.11.0"
+    ext.room_version = "2.2.5"
 
     repositories {
         google()
