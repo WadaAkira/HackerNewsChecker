@@ -1,9 +1,9 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
+import com.example.common.util.addTo
 import com.example.usecase.HackerNewsUseCase
 import com.example.usecase.HistoryUseCase
-import com.example.common.util.addTo
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
