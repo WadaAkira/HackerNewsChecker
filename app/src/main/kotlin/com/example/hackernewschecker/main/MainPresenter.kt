@@ -16,7 +16,7 @@ class MainPresenter @Inject constructor(
     CoroutineScope {
 
     companion object {
-        private const val CURRENT_NEWS_TAKE_VALUE = 7
+        private const val CURRENT_NEWS_TAKE_VALUE = 20
         private const val LOADNEXT_TAKE_VALUE = 15
     }
 
@@ -67,9 +67,24 @@ class MainPresenter @Inject constructor(
                 view.hideLoading()
                 view.showError(IllegalStateException("Current stories are not found."))
             } else {
-                loadNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
+                loadEachNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
             }
         }.addTo(jobList)
+    }
+
+    // Hacker News Id にひもづく記事を一つずつ取得して表示する
+    private suspend fun loadEachNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
+        newsIdList.forEach { newsId ->
+            val news = withContext(Dispatchers.IO) {
+                newsUseCase.loadNews(newsId)
+            }
+
+            view.hideLoading()
+            view.showNews(news)
+        }
+
+        this.loadNextFirstIndex = loadNextFirstIndex
+        isLoading = false
     }
 
     override fun loadNext() {
@@ -96,7 +111,7 @@ class MainPresenter @Inject constructor(
         }.addTo(jobList)
     }
 
-    // Hacker News Id にひもづく記事を取得する
+    // Hacker News Id にひもづく記事をまとめて取得する
     private suspend fun loadNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
         val responseList = newsIdList.map { newsId ->
             withContext(Dispatchers.IO) {

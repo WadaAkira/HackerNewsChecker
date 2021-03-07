@@ -63,6 +63,13 @@ interface MainContract {
         /**
          * Hacker News を表示する
          *
+         * @param news 表示する Hacker News
+         */
+        fun showNews(news: News)
+
+        /**
+         * Hacker News を表示する
+         *
          * @param newsList 表示する Hacker News のリスト
          */
         fun showNewsList(newsList: List<News>)
