@@ -16,8 +16,7 @@ class MainPresenter @Inject constructor(
     CoroutineScope {
 
     companion object {
-        private const val CURRENT_NEWS_TAKE_VALUE = 15
-        private const val LOADNEXT_TAKE_VALUE = 15
+        private const val NEWS_TAKE_VALUE = 15
     }
 
     private lateinit var view: MainContract.View
@@ -67,7 +66,7 @@ class MainPresenter @Inject constructor(
                 view.hideLoading()
                 view.showError(IllegalStateException("Current stories are not found."))
             } else {
-                loadEachNews(newsIdList.take(CURRENT_NEWS_TAKE_VALUE), CURRENT_NEWS_TAKE_VALUE)
+                loadEachNews(newsIdList.take(NEWS_TAKE_VALUE), NEWS_TAKE_VALUE)
             }
         }.addTo(jobList)
     }
@@ -99,10 +98,10 @@ class MainPresenter @Inject constructor(
 
         isLoading = true
 
-        val lastIndex = if (newsIdList.size <= loadNextFirstIndex + LOADNEXT_TAKE_VALUE) {
+        val lastIndex = if (newsIdList.size <= loadNextFirstIndex + NEWS_TAKE_VALUE) {
             newsIdList.size
         } else {
-            loadNextFirstIndex + LOADNEXT_TAKE_VALUE
+            loadNextFirstIndex + NEWS_TAKE_VALUE
         }
 
         launch(exceptionHandler) {
