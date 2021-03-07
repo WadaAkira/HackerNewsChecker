@@ -8,14 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.common.util.Log
+import com.example.common.util.showToast
+import com.example.common.view.CardListAdapter
+import com.example.common.view.CardListDecoration
+import com.example.dto.News
 import com.example.hackernewschecker.AppActivity
 import com.example.hackernewschecker.AppApplication
 import com.example.hackernewschecker.R
-import com.example.common.view.CardListAdapter
-import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.MainFragmentBinding
-import com.example.common.util.Log
-import com.example.common.util.showToast
 import javax.inject.Inject
 
 /**
@@ -110,8 +111,8 @@ class MainFragment : Fragment(), MainContract.View {
         adapter.clearNewsList()
     }
 
-    override fun showNewsList(newsList: List<com.example.dto.News>) {
-        adapter.setNewsList(newsList)
+    override fun showNews(news: News) {
+        adapter.addNews(news)
     }
 
     override fun transitNewsSite(url: Uri) {
