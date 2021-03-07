@@ -31,6 +31,16 @@ class CardListAdapter @Inject constructor() : RecyclerView.Adapter<CardViewHolde
     }
 
     /**
+     * RecyclerView に表示する Hacker News の情報を追加する
+     *
+     * @param news 追加する Hacker News
+     */
+    fun addNews(news: News) {
+        this.newsList += news
+        notifyDataSetChanged()
+    }
+
+    /**
      * RecyclerView に表示する Hacker News の情報を登録する
      *
      * @param newsList 表示する Hacker News のリスト
