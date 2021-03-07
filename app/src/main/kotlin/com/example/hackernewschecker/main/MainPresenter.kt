@@ -16,7 +16,7 @@ class MainPresenter @Inject constructor(
     CoroutineScope {
 
     companion object {
-        private const val CURRENT_NEWS_TAKE_VALUE = 20
+        private const val CURRENT_NEWS_TAKE_VALUE = 15
         private const val LOADNEXT_TAKE_VALUE = 15
     }
 

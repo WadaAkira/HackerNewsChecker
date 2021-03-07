@@ -140,9 +140,9 @@ class MainFragment : Fragment(), MainContract.View {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-//            if (!recyclerView.canScrollVertically(1)) {
-//                presenter.loadNext()
-//            }
+            if (!recyclerView.canScrollVertically(1)) {
+                presenter.loadNext()
+            }
         }
     }
     // RecyclerView のスクロール検出用のリスナー実装ここまで
