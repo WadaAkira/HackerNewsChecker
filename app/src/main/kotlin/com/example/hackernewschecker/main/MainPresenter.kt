@@ -71,21 +71,6 @@ class MainPresenter @Inject constructor(
         }.addTo(jobList)
     }
 
-    // Hacker News Id にひもづく記事を一つずつ取得して表示する
-    private suspend fun loadEachNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
-        newsIdList.forEach { newsId ->
-            val news = withContext(Dispatchers.IO) {
-                newsUseCase.loadNews(newsId)
-            }
-
-            view.hideLoading()
-            view.showNews(news)
-        }
-
-        this.loadNextFirstIndex = loadNextFirstIndex
-        isLoading = false
-    }
-
     override fun loadNext() {
         // ロードネクストできるか判定
         if (isLoading) {
@@ -108,6 +93,21 @@ class MainPresenter @Inject constructor(
             view.showLoading()
             loadEachNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
         }.addTo(jobList)
+    }
+
+    // Hacker News Id にひもづく記事を一つずつ取得して表示する
+    private suspend fun loadEachNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
+        newsIdList.forEach { newsId ->
+            val news = withContext(Dispatchers.IO) {
+                newsUseCase.loadNews(newsId)
+            }
+
+            view.hideLoading()
+            view.showNews(news)
+        }
+
+        this.loadNextFirstIndex = loadNextFirstIndex
+        isLoading = false
     }
 
     override fun openNewsSite(news: com.example.dto.News) {
