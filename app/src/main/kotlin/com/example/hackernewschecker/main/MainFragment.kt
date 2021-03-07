@@ -115,10 +115,6 @@ class MainFragment : Fragment(), MainContract.View {
         adapter.addNews(news)
     }
 
-    override fun showNewsList(newsList: List<com.example.dto.News>) {
-        adapter.setNewsList(newsList)
-    }
-
     override fun transitNewsSite(url: Uri) {
         (activity as? AppActivity)?.startWebBrowser(url)
     }

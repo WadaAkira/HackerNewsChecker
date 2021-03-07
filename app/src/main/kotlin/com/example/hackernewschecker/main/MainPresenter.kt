@@ -107,22 +107,8 @@ class MainPresenter @Inject constructor(
 
         launch(exceptionHandler) {
             view.showLoading()
-            loadNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
+            loadEachNews(newsIdList.subList(loadNextFirstIndex, lastIndex), lastIndex)
         }.addTo(jobList)
-    }
-
-    // Hacker News Id にひもづく記事をまとめて取得する
-    private suspend fun loadNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
-        val responseList = newsIdList.map { newsId ->
-            withContext(Dispatchers.IO) {
-                newsUseCase.loadNews(newsId)
-            }
-        }
-
-        this.loadNextFirstIndex = loadNextFirstIndex
-        isLoading = false
-        view.hideLoading()
-        view.showNewsList(responseList)
     }
 
     override fun openNewsSite(news: com.example.dto.News) {
