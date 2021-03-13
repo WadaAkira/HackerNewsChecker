@@ -18,6 +18,9 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainCoroutineDispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -90,6 +93,18 @@ class AppModule(applicationContext: Context) {
     @Provides
     fun provideHistoryPresenter(presenter: HistoryPresenter): HistoryContract.Presenter {
         return presenter
+    }
+
+    @Singleton
+    @Provides
+    fun provideMainDispatcher(): MainCoroutineDispatcher {
+        return Dispatchers.Main
+    }
+
+    @Singleton
+    @Provides
+    fun provideIODispatcher(): CoroutineDispatcher {
+        return Dispatchers.IO
     }
 
     // okHttpClient を作成する

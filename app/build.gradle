@@ -10,7 +10,7 @@ apply from: rootProject.file("android_common.gradle")
 android {
     defaultConfig {
         applicationId "com.example.hackernewschecker"
-        versionName "1.3"
+        versionName "1.4"
         versionCode generateVersionCode(versionName)
     }
 
