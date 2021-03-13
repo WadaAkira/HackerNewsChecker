@@ -8,7 +8,11 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) :
+class HistoryPresenter @Inject constructor(
+    private val useCase: HistoryUseCase,
+    private val mainDispatcher: MainCoroutineDispatcher,
+    private val ioDispatcher: CoroutineDispatcher
+) :
     HistoryContract.Presenter, CoroutineScope {
 
     private lateinit var view: HistoryContract.View
@@ -24,7 +28,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
     private var isLoading = false
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
+        get() = mainDispatcher
 
     override fun setup(view: HistoryContract.View) {
         this.view = view
@@ -35,7 +39,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
 
         launch(exceptionHandler) {
             view.showLoading()
-            val historyList = withContext(Dispatchers.IO) {
+            val historyList = withContext(ioDispatcher) {
                 useCase.loadList()
             }
 
@@ -73,7 +77,7 @@ class HistoryPresenter @Inject constructor(private val useCase: HistoryUseCase) 
 
     override fun deleteHistory(news: com.example.dto.News) {
         val job = launch(exceptionHandler) {
-            withContext(Dispatchers.IO) {
+            withContext(ioDispatcher) {
                 useCase.delete(news)
             }
             view.showToDeleteHistory(news.id, news.title.toEmptyOrString())
