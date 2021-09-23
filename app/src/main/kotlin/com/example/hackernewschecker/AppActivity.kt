@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.common.interfaces.ActivityDependencyControl
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.main.MainFragment
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
 @AndroidEntryPoint
-class AppActivity : AppCompatActivity() {
+class AppActivity : AppCompatActivity(), ActivityDependencyControl {
     companion object {
         private const val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
     }
@@ -53,12 +54,8 @@ class AppActivity : AppCompatActivity() {
         return false
     }
 
-    /**
-     * 外部ブラウザを起動する
-     *
-     * @param url 開く URL
-     */
-    fun startWebBrowser(url: Uri) {
+    // ActivityDependencyControl 実装
+    override fun startWebBrowser(url: Uri) {
         startActivity(Intent(Intent.ACTION_VIEW, url))
     }
 

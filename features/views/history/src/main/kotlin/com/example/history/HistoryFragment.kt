@@ -9,14 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.AppActivity
-import com.example.hackernewschecker.AppApplication
-import com.example.hackernewschecker.R
+import com.example.common.interfaces.ActivityDependencyControl
 import com.example.common.view.CardListAdapter
 import com.example.common.view.CardListDecoration
-import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.common.util.Log
 import com.example.common.util.showToast
+import com.example.history.R
+import com.example.history.databinding.HistoryFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -119,7 +118,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
     }
 
     override fun transitNewsSite(url: Uri) {
-        (activity as? AppActivity)?.startWebBrowser(url)
+        (activity as? ActivityDependencyControl)?.startWebBrowser(url)
     }
 
     override fun showNoneHistory() {
