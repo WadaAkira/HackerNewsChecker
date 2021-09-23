@@ -20,11 +20,6 @@ android {
         }
     }
 
-    // ソースディレクトリを java から kotlin に変更する
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
     // ViewBinding を有効化
     android.buildFeatures.viewBinding = true
 }
