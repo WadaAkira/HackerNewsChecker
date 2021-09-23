@@ -1,23 +1,25 @@
 package com.example.hackernewschecker.di
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Room
 import com.example.hackernewschecker.BuildConfig
 import com.example.hackernewschecker.history.HistoryContract
 import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
+import com.example.repository.Repository
+import com.example.repository.database.HackerNewsDatabase
+import com.example.repository.impl.RepositoryImpl
 import com.example.usecase.HackerNewsUseCase
 import com.example.usecase.HistoryUseCase
 import com.example.usecase.impl.HackerNewsUseCaseImpl
 import com.example.usecase.impl.HistoryUseCaseImpl
-import com.example.repository.Repository
-import com.example.repository.database.HackerNewsDatabase
-import com.example.repository.impl.RepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainCoroutineDispatcher
@@ -32,23 +34,20 @@ import javax.inject.Singleton
  * DI するクラスを定義する
  */
 @Module
-class AppModule(applicationContext: Context) {
-    companion object {
-        private const val HACKER_NEWS_API_BASE_URL = "https://hacker-news.firebaseio.com/v0/"
-        private const val TIMEOUT_SECOND = 30L
-        private const val DATABASE_NAME = "hacker_news_database"
-    }
-
-    private val database = Room.databaseBuilder(
-        applicationContext,
-        HackerNewsDatabase::class.java,
-        DATABASE_NAME
-    ).build()
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    private const val HACKER_NEWS_API_BASE_URL = "https://hacker-news.firebaseio.com/v0/"
+    private const val TIMEOUT_SECOND = 30L
+    private const val DATABASE_NAME = "hacker_news_database"
 
     @Singleton
     @Provides
-    fun provideDatabase(): HackerNewsDatabase {
-        return database
+    fun provideDatabase(context: Application): HackerNewsDatabase {
+        return Room.databaseBuilder(
+            context,
+            HackerNewsDatabase::class.java,
+            DATABASE_NAME
+        ).build()
     }
 
     @Singleton

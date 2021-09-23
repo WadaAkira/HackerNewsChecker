@@ -17,11 +17,13 @@ import com.example.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.HistoryFragmentBinding
 import com.example.common.util.Log
 import com.example.common.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * 履歴画面を表示するフラグメント
  */
+@AndroidEntryPoint
 class HistoryFragment : Fragment(), HistoryContract.View {
     private var _binding: HistoryFragmentBinding? = null
     private val binding
@@ -44,11 +46,6 @@ class HistoryFragment : Fragment(), HistoryContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
-        (activity?.application as? AppApplication)
-            ?.appComponent
-            ?.inject(this)
-            ?: throw IllegalStateException("Application or Activity is null.")
 
         presenter.setup(this)
     }

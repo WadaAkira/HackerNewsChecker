@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.android.gms.oss-licenses-plugin'
 }
 
@@ -53,9 +54,9 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
-    // dagger2
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    // hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"

@@ -14,11 +14,13 @@ import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.main.MainFragment
 import com.example.howto.HowToFragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
  * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
+@AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
     companion object {
         private const val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"

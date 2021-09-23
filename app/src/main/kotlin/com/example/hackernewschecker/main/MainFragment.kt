@@ -17,11 +17,14 @@ import com.example.hackernewschecker.AppActivity
 import com.example.hackernewschecker.AppApplication
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.databinding.MainFragmentBinding
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * Hacker News API と通信し、結果を表示するフラグメント
  */
+@AndroidEntryPoint
 class MainFragment : Fragment(), MainContract.View {
     private var _binding: MainFragmentBinding? = null
     private val binding
@@ -44,12 +47,6 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
-        (activity?.application as? AppApplication)
-            ?.appComponent
-            ?.inject(this)
-            ?: throw IllegalStateException("Application or Activity is null.")
-
         presenter.setup(this)
     }
 
