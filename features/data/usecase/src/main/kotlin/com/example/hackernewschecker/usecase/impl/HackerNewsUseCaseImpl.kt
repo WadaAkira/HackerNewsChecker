@@ -1,6 +1,6 @@
-package com.example.usecase.impl
+package com.example.hackernewschecker.usecase.impl
 
-import com.example.usecase.HackerNewsUseCase
+import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.repository.Repository
 import javax.inject.Inject
 

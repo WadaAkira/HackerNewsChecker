@@ -1,4 +1,4 @@
-package com.example.usecase
+package com.example.hackernewschecker.usecase
 
 /**
  * HackerNews API と通信するユースケース

@@ -1,4 +1,4 @@
-package com.example.usecase
+package com.example.hackernewschecker.usecase
 
 /**
  * 表示履歴に係るユースケース
