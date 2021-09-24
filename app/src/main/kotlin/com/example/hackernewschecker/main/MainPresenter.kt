@@ -2,6 +2,7 @@ package com.example.hackernewschecker.main
 
 import android.net.Uri
 import com.example.hackernewschecker.common.util.addTo
+import com.example.hackernewschecker.dto.News
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import kotlinx.coroutines.*
@@ -112,7 +113,7 @@ class MainPresenter @Inject constructor(
         isLoading = false
     }
 
-    override fun openNewsSite(news: com.example.dto.News) {
+    override fun openNewsSite(news: News) {
         // 通信中は画面遷移しないようにする
         if (isLoading) {
             return

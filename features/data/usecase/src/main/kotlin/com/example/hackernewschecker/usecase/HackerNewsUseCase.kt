@@ -1,5 +1,7 @@
 package com.example.hackernewschecker.usecase
 
+import com.example.hackernewschecker.dto.News
+
 /**
  * HackerNews API と通信するユースケース
  */
@@ -17,5 +19,6 @@ interface HackerNewsUseCase {
      * @param newsId Hacker News の id
      * @return id にひもづく記事の詳細
      */
-    suspend fun loadNews(newsId: Int): com.example.dto.News
+    suspend fun loadNews(newsId: Int): News
+
 }

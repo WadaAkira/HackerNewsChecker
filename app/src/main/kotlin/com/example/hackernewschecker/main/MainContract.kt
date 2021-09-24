@@ -1,7 +1,7 @@
 package com.example.hackernewschecker.main
 
 import android.net.Uri
-import com.example.dto.News
+import com.example.hackernewschecker.dto.News
 
 /**
  * 起動画面の実装規約

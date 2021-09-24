@@ -3,8 +3,8 @@ package com.example.hackernewschecker.common.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dto.News
 import com.example.hackernewschecker.common.databinding.CardViewholderBinding
+import com.example.hackernewschecker.dto.News
 import javax.inject.Inject
 
 /**

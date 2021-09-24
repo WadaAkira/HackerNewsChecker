@@ -1,6 +1,6 @@
 package com.example.hackernewschecker.repository.impl
 
-import com.example.dto.News
+import com.example.hackernewschecker.dto.News
 import com.example.hackernewschecker.repository.Repository
 import com.example.hackernewschecker.repository.api.HackerNewsApi
 import com.example.hackernewschecker.repository.data.RepositoryNews

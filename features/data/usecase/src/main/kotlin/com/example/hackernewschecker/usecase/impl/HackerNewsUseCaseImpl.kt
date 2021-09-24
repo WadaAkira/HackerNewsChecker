@@ -1,5 +1,6 @@
 package com.example.hackernewschecker.usecase.impl
 
+import com.example.hackernewschecker.dto.News
 import com.example.hackernewschecker.repository.Repository
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import javax.inject.Inject
@@ -10,7 +11,7 @@ class HackerNewsUseCaseImpl @Inject constructor(private val repository: Reposito
         return repository.loadCurrentNewsIdList()
     }
 
-    override suspend fun loadNews(newsId: Int): com.example.dto.News {
+    override suspend fun loadNews(newsId: Int): News {
         return repository.loadNews(newsId)
     }
 }

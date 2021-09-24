@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dto.News
 import com.example.hackernewschecker.AppActivity
 import com.example.hackernewschecker.R
 import com.example.hackernewschecker.common.util.Log
@@ -16,6 +15,7 @@ import com.example.hackernewschecker.common.util.showToast
 import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.databinding.MainFragmentBinding
+import com.example.hackernewschecker.dto.News
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,7 +52,7 @@ class MainFragment : Fragment(), MainContract.View {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -14,6 +14,7 @@ import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.common.view.CardListDecoration
 import com.example.hackernewschecker.common.util.Log
 import com.example.hackernewschecker.common.util.showToast
+import com.example.hackernewschecker.dto.News
 import com.example.hackernewschecker.history.databinding.HistoryFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -112,7 +113,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         binding.progress.visibility = View.GONE
     }
 
-    override fun showHistoryList(historyList: List<com.example.dto.News>) {
+    override fun showHistoryList(historyList: List<News>) {
         adapter.setNewsList(historyList)
     }
 

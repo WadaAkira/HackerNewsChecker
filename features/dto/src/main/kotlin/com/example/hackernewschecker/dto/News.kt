@@ -1,4 +1,4 @@
-package com.example.dto
+package com.example.hackernewschecker.dto
 
 /**
  * １記事分の Hacker News の情報を保持するデータクラス

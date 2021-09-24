@@ -1,6 +1,7 @@
 package com.example.hackernewschecker.repository
 
-import com.example.dto.News
+import com.example.hackernewschecker.dto.News
+
 
 /**
  * アプリのデータアクセスを一元管理する

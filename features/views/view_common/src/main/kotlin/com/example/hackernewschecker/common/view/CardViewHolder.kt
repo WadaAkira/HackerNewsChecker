@@ -1,9 +1,9 @@
 package com.example.hackernewschecker.common.view
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dto.News
 import com.example.hackernewschecker.common.R
 import com.example.hackernewschecker.common.databinding.CardViewholderBinding
+import com.example.hackernewschecker.dto.News
 
 /**
  * Hacker News 一つ分の表示
