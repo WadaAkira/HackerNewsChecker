@@ -1,4 +1,4 @@
-package com.example.common.interfaces
+package com.example.hackernewschecker.common.interfaces
 
 import android.net.Uri
 

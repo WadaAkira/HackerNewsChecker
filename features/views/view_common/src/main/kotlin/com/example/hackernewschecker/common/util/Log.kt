@@ -1,6 +1,7 @@
-package com.example.common.util
+package com.example.hackernewschecker.common.util
 
-import com.example.common.BuildConfig
+import com.example.hackernewschecker.common.BuildConfig
+
 
 /**
  * ロギング用のユーティリティ

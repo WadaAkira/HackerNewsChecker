@@ -1,10 +1,10 @@
-package com.example.common.view
+package com.example.hackernewschecker.common.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common.databinding.CardViewholderBinding
 import com.example.dto.News
+import com.example.hackernewschecker.common.databinding.CardViewholderBinding
 import javax.inject.Inject
 
 /**

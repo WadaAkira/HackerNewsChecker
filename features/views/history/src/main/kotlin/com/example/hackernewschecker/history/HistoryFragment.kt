@@ -9,13 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common.interfaces.ActivityDependencyControl
-import com.example.common.view.CardListAdapter
-import com.example.common.view.CardListDecoration
-import com.example.common.util.Log
-import com.example.common.util.showToast
-import com.example.history.R
-import com.example.history.databinding.HistoryFragmentBinding
+import com.example.hackernewschecker.common.interfaces.ActivityDependencyControl
+import com.example.hackernewschecker.common.view.CardListAdapter
+import com.example.hackernewschecker.common.view.CardListDecoration
+import com.example.hackernewschecker.common.util.Log
+import com.example.hackernewschecker.common.util.showToast
+import com.example.hackernewschecker.history.databinding.HistoryFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -53,7 +52,7 @@ class HistoryFragment : Fragment(), HistoryContract.View {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = HistoryFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

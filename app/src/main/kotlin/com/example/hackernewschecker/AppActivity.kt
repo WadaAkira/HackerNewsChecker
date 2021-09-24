@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.common.interfaces.ActivityDependencyControl
+import com.example.hackernewschecker.common.interfaces.ActivityDependencyControl
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
 import com.example.hackernewschecker.main.MainFragment
