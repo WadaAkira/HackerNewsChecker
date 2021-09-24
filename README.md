@@ -5,7 +5,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ## アプリの動作要件
 
-- Android 8.0 以上の実機/エミュレータでなければ動作しない
+- Android 9.0 以上の実機/エミュレータでなければ動作しない
 - デュアルディスプレイ等、複数のディスプレイを持つデバイスへのインストールは想定していない
 - Pad、Android TV、ウェアラブル等、スマートフォーン以外のデバイスへのインストールは想定していない
 
@@ -38,12 +38,14 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
     - API or Database or SharedPreferences 等、データアクセスの場所を Presenter から隠蔽する
     - UseCase から呼び出される
 - 以下の機能を独立したモジュールとして作成する
-    - Repository: データアクセス
+    - repository: データアクセス
     - dto: モジュール間のデータ転送用オブジェクトを定義する
     - usecase: プレゼンターが利用するユースケース
     - how_to: 使い方画面
     - view_common: 起動時画面、履歴画面共通の素材/ユーティリティ
-    - app: 起動時アクティビティ/DI の制御/起動時画面/履歴画面
+    - history: 閲覧履歴画面
+    - main: 起動時画面
+    - app: 起動時アクティビティ/DI の制御
 - 単体テスト
     - テスティングフレームワーク Spek2 とモックライブラリ MockK を導入する
         - Spek2 が最も実務経験が豊富なため
@@ -55,7 +57,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ### 利用している技術
 
-- dagger2
+- hilt-dagger2
     - Context, Presenter, UseCase, Retrofit, Database, Repository を DI するため
     - DI するオブジェクトは、すべてアプリケーションと同一の生存期間をもたせる
         - 実装を簡略化するため
@@ -76,8 +78,8 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ## 開発環境
 
-- Mac Catalina 10.15.7
-- Android Studio 4.1 + kotlin 1.3.72 + Spek Framework Plugin 2.0.14-Studio4.1
+- Mac Big Sur 11.6
+- Android Studio Arctic Fox 2020.3.1 Patch 2 + kotlin 1.5.31
 
 ## アプリのライセンス
 

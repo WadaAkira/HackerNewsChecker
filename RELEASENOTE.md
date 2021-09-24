@@ -1,3 +1,24 @@
+# ver1.6（2021/9/25 リリース）
+- hilt を導入
+- main/history をモジュール分割
+- パッケージを修正
+
+# ver1.5（2021/9/24 リリース）
+- targetSdkVersion/compileSdkVersion を 31 に変更
+- Gradle のバージョンアップ
+- OSS をアップデート
+- minSdkVersion を 28 に変更
+
+# ver1.4（2021/3/13 リリース）
+- CoroutineDispatcher を DI するよう修正
+
+# ver1.3（2021/3/8 リリース）
+- 記事情報を１けんずつ取得するよう修正
+
+# ver1.2（2021/3/3 リリース）
+- targetSdkVersion/compileSdkVersion を 30 に変更
+- 一部 OSS をアップデート
+
 # ver1.1（2020/11/22 リリース）
 - Hacker News Checker をモジュール分割
 
