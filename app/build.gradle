@@ -53,14 +53,10 @@ dependencies {
     // Layout
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
     // hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-
-    // coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     // okHttp3
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
