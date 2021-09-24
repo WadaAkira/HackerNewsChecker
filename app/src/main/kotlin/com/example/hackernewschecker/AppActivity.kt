@@ -38,7 +38,7 @@ class AppActivity : AppCompatActivity(), ActivityDependencyControl {
         setSupportActionBar(binding.toolbar)
 
         // MainFragment の設定
-        switchFragment(MainFragment.newInstance())
+        switchFragment(com.example.hackernewschecker.main.MainFragment.newInstance())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,7 +69,7 @@ class AppActivity : AppCompatActivity(), ActivityDependencyControl {
         if (fragments.isNotEmpty()) {
             val currentFragment = fragments[0]
             when {
-                currentFragment is MainFragment && fragment is MainFragment -> return
+                currentFragment is com.example.hackernewschecker.main.MainFragment && fragment is com.example.hackernewschecker.main.MainFragment -> return
                 currentFragment is HistoryFragment && fragment is HistoryFragment -> return
                 currentFragment is HowToFragment && fragment is HowToFragment -> return
             }
@@ -97,7 +97,7 @@ class AppActivity : AppCompatActivity(), ActivityDependencyControl {
             it.menuInflater.inflate(R.menu.hacker_news_checker_popup_menu, it.menu)
             it.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
-                    R.id.top -> switchFragment(MainFragment.newInstance())
+                    R.id.top -> switchFragment(com.example.hackernewschecker.main.MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.how_to -> switchFragment(HowToFragment.newInstance())
                     R.id.license -> startActivity(Intent(this, OssLicensesMenuActivity::class.java))

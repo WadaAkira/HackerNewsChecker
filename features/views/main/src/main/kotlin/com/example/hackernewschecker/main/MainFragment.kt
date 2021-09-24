@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hackernewschecker.AppActivity
-import com.example.hackernewschecker.R
+import com.example.hackernewschecker.common.interfaces.ActivityDependencyControl
 import com.example.hackernewschecker.common.util.Log
 import com.example.hackernewschecker.common.util.showToast
 import com.example.hackernewschecker.common.view.CardListAdapter
 import com.example.hackernewschecker.common.view.CardListDecoration
-import com.example.hackernewschecker.databinding.MainFragmentBinding
 import com.example.hackernewschecker.dto.News
+import com.example.hackernewschecker.main.databinding.MainFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -111,7 +110,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun transitNewsSite(url: Uri) {
-        (activity as? AppActivity)?.startWebBrowser(url)
+        (activity as? ActivityDependencyControl)?.startWebBrowser(url)
     }
 
     override fun showError(throwable: Throwable) {
