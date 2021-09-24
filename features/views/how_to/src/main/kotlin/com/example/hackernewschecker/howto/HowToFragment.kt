@@ -1,4 +1,4 @@
-package com.example.howto
+package com.example.hackernewschecker.howto
 
 import android.os.Bundle
 import android.view.LayoutInflater
