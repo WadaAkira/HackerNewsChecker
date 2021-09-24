@@ -1,10 +1,11 @@
-package com.example.repository.database
+package com.example.hackernewschecker.repository.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.repository.data.IntListTypeConverter
-import com.example.repository.data.RepositoryNews
+import com.example.hackernewschecker.repository.data.IntListTypeConverter
+import com.example.hackernewschecker.repository.data.RepositoryNews
+
 
 /**
  * データベースを管理するクラス

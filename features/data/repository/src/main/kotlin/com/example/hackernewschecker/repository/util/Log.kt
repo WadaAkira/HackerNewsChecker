@@ -1,6 +1,7 @@
-package com.example.repository.util
+package com.example.hackernewschecker.repository.util
 
-import com.example.repository.BuildConfig
+import com.example.hackernewschecker.repository.BuildConfig
+
 
 /**
  * ロギング用のユーティリティ

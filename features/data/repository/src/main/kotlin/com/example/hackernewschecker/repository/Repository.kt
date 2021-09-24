@@ -1,4 +1,4 @@
-package com.example.repository
+package com.example.hackernewschecker.repository
 
 import com.example.dto.News
 

@@ -1,7 +1,7 @@
-package com.example.repository.database
+package com.example.hackernewschecker.repository.database
 
 import androidx.room.*
-import com.example.repository.data.RepositoryNews
+import com.example.hackernewschecker.repository.data.RepositoryNews
 
 /**
  * hacker_news テーブルへアクセスするクラス

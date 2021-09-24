@@ -1,11 +1,11 @@
-package com.example.repository
+package com.example.hackernewschecker.repository
 
 import com.example.dto.News
-import com.example.repository.api.HackerNewsApi
-import com.example.repository.data.RepositoryNews
-import com.example.repository.database.HackerNewsDao
-import com.example.repository.database.HackerNewsDatabase
-import com.example.repository.impl.RepositoryImpl
+import com.example.hackernewschecker.repository.api.HackerNewsApi
+import com.example.hackernewschecker.repository.data.RepositoryNews
+import com.example.hackernewschecker.repository.database.HackerNewsDao
+import com.example.hackernewschecker.repository.database.HackerNewsDatabase
+import com.example.hackernewschecker.repository.impl.RepositoryImpl
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.spekframework.spek2.Spek

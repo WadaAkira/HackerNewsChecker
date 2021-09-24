@@ -1,6 +1,6 @@
-package com.example.repository.api
+package com.example.hackernewschecker.repository.api
 
-import com.example.repository.data.RepositoryNews
+import com.example.hackernewschecker.repository.data.RepositoryNews
 import retrofit2.http.GET
 import retrofit2.http.Path
 

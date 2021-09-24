@@ -7,13 +7,13 @@ import com.example.hackernewschecker.history.HistoryContract
 import com.example.hackernewschecker.history.HistoryPresenter
 import com.example.hackernewschecker.main.MainContract
 import com.example.hackernewschecker.main.MainPresenter
+import com.example.hackernewschecker.repository.Repository
+import com.example.hackernewschecker.repository.database.HackerNewsDatabase
+import com.example.hackernewschecker.repository.impl.RepositoryImpl
 import com.example.hackernewschecker.usecase.HackerNewsUseCase
 import com.example.hackernewschecker.usecase.HistoryUseCase
 import com.example.hackernewschecker.usecase.impl.HackerNewsUseCaseImpl
 import com.example.hackernewschecker.usecase.impl.HistoryUseCaseImpl
-import com.example.repository.Repository
-import com.example.repository.database.HackerNewsDatabase
-import com.example.repository.impl.RepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

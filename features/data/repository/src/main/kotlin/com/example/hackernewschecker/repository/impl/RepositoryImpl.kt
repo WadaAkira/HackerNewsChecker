@@ -1,10 +1,10 @@
-package com.example.repository.impl
+package com.example.hackernewschecker.repository.impl
 
 import com.example.dto.News
-import com.example.repository.Repository
-import com.example.repository.api.HackerNewsApi
-import com.example.repository.data.RepositoryNews
-import com.example.repository.database.HackerNewsDatabase
+import com.example.hackernewschecker.repository.Repository
+import com.example.hackernewschecker.repository.api.HackerNewsApi
+import com.example.hackernewschecker.repository.data.RepositoryNews
+import com.example.hackernewschecker.repository.database.HackerNewsDatabase
 import retrofit2.Retrofit
 import javax.inject.Inject
 
