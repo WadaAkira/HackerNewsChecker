@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.android.gms.oss-licenses-plugin'
 }
 
@@ -10,7 +11,7 @@ apply from: rootProject.file("android_common.gradle")
 android {
     defaultConfig {
         applicationId "com.example.hackernewschecker"
-        versionName "1.5"
+        versionName "1.6"
         versionCode generateVersionCode(versionName)
     }
 
@@ -31,20 +32,15 @@ android {
         }
     }
 
-    // ソースディレクトリを java から kotlin に変更する
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        test.java.srcDirs += 'src/test/kotlin'
-    }
-
     // ViewBinding を有効化
     android.buildFeatures.viewBinding = true
 }
 
 dependencies {
     // Module
-    implementation project(":dto")
     implementation project(":view_common")
+    implementation project(":history")
+    implementation project(":main")
     implementation project(":how_to")
     implementation project(":usecase")
     implementation project(":repository")
@@ -57,14 +53,10 @@ dependencies {
     // Layout
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
-    // dagger2
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
-    // coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    // hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // okHttp3
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"

@@ -9,17 +9,19 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.hackernewschecker.common.interfaces.ActivityDependencyControl
 import com.example.hackernewschecker.databinding.AppActivityBinding
 import com.example.hackernewschecker.history.HistoryFragment
-import com.example.hackernewschecker.main.MainFragment
-import com.example.howto.HowToFragment
+import com.example.hackernewschecker.howto.HowToFragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * HackerNewsChecker のローンチアクティビティ<br>
  * メイン画面、履歴画面、ライセンス画面はフラグメントを切り替えて表示する
  */
-class AppActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class AppActivity : AppCompatActivity(), ActivityDependencyControl {
     companion object {
         private const val OFFICIAL_WEB_SITE_URL = "https://news.ycombinator.com/"
     }
@@ -35,7 +37,7 @@ class AppActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         // MainFragment の設定
-        switchFragment(MainFragment.newInstance())
+        switchFragment(com.example.hackernewschecker.main.MainFragment.newInstance())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,12 +53,8 @@ class AppActivity : AppCompatActivity() {
         return false
     }
 
-    /**
-     * 外部ブラウザを起動する
-     *
-     * @param url 開く URL
-     */
-    fun startWebBrowser(url: Uri) {
+    // ActivityDependencyControl 実装
+    override fun startWebBrowser(url: Uri) {
         startActivity(Intent(Intent.ACTION_VIEW, url))
     }
 
@@ -70,7 +68,7 @@ class AppActivity : AppCompatActivity() {
         if (fragments.isNotEmpty()) {
             val currentFragment = fragments[0]
             when {
-                currentFragment is MainFragment && fragment is MainFragment -> return
+                currentFragment is com.example.hackernewschecker.main.MainFragment && fragment is com.example.hackernewschecker.main.MainFragment -> return
                 currentFragment is HistoryFragment && fragment is HistoryFragment -> return
                 currentFragment is HowToFragment && fragment is HowToFragment -> return
             }
@@ -98,7 +96,7 @@ class AppActivity : AppCompatActivity() {
             it.menuInflater.inflate(R.menu.hacker_news_checker_popup_menu, it.menu)
             it.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
-                    R.id.top -> switchFragment(MainFragment.newInstance())
+                    R.id.top -> switchFragment(com.example.hackernewschecker.main.MainFragment.newInstance())
                     R.id.history -> switchFragment(HistoryFragment.newInstance())
                     R.id.how_to -> switchFragment(HowToFragment.newInstance())
                     R.id.license -> startActivity(Intent(this, OssLicensesMenuActivity::class.java))
