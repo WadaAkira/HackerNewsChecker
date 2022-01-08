@@ -11,7 +11,7 @@ apply from: rootProject.file("android_common.gradle")
 android {
     defaultConfig {
         applicationId "com.example.hackernewschecker"
-        versionName "1.6"
+        versionName "1.7"
         versionCode generateVersionCode(versionName)
     }
 
