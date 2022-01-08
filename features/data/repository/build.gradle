@@ -61,4 +61,5 @@ dependencies {
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
     testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "io.mockk:mockk-agent-jvm:$mockk_version"
 }
