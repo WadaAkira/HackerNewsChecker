@@ -1,11 +1,11 @@
 # HackerNewsChecker とは
 
-Wada Akira が Android エンジニアとして、スキルを向上させるために作成した学習用の Android アプリ。
-また、Wada Akira のスキルチェックとして利用されることも想定している。
+Wada Akira が Android エンジニアとして、スキルを向上させるために作成した学習用の Android アプリ。 また、Wada Akira
+のスキルチェックとして利用されることも想定している。
 
 ## アプリの動作要件
 
-- Android 9.0 以上の実機/エミュレータでなければ動作しない
+- Android 10 以上の実機/エミュレータでなければ動作しない
 - デュアルディスプレイ等、複数のディスプレイを持つデバイスへのインストールは想定していない
 - Pad、Android TV、ウェアラブル等、スマートフォーン以外のデバイスへのインストールは想定していない
 
@@ -78,14 +78,14 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ## 開発環境
 
-- Mac Big Sur 11.6
-- Android Studio Arctic Fox 2020.3.1 Patch 2 + kotlin 1.5.31
+- Mac Montrey 12.4(intel core i5)
+- Android Studio Chipmunk | 2021.2.1 Patch 1
+- kotlin 1.7.0
 
 ## アプリのライセンス
 
-MIT ライセンスを採用している。
-Wada Akira の名称を明記してもらえれば利用は自由だが、当アプリに関わるあらゆる不具合について、Wada Akira は一切の責任を負わない。
-また、Android OS のバージョンアップ、Android OS の退廃、OSS の非推奨化等、当アプリのメンテナンスが必要な場合も、
-Wada Akira はメンテナンスについて一切の責任を負わない。
+MIT ライセンスを採用している。 Wada Akira の名称を明記してもらえれば利用は自由だが、当アプリに関わるあらゆる不具合について、Wada Akira は一切の責任を負わない。
+また、Android OS のバージョンアップ、Android OS の退廃、OSS の非推奨化等、当アプリのメンテナンスが必要な場合も、 Wada Akira
+はメンテナンスについて一切の責任を負わない。
 
 最後に、当アプリは、作成者の目的を達成するか、作成者が不要と判断した時、事前連絡なしに公開を終了させることがある。
