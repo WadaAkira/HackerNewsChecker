@@ -11,8 +11,7 @@ import kotlin.coroutines.CoroutineContext
 
 class HistoryPresenter @Inject constructor(
     private val useCase: HistoryUseCase,
-    private val mainDispatcher: MainCoroutineDispatcher,
-    private val ioDispatcher: CoroutineDispatcher
+    private val mainDispatcher: MainCoroutineDispatcher
 ) :
     HistoryContract.Presenter, CoroutineScope {
 
@@ -40,9 +39,7 @@ class HistoryPresenter @Inject constructor(
 
         launch(exceptionHandler) {
             view.showLoading()
-            val historyList = withContext(ioDispatcher) {
-                useCase.loadList()
-            }
+            val historyList = useCase.loadList()
 
             isLoading = false
             view.hideLoading()
@@ -78,9 +75,7 @@ class HistoryPresenter @Inject constructor(
 
     override fun deleteHistory(news: News) {
         val job = launch(exceptionHandler) {
-            withContext(ioDispatcher) {
-                useCase.delete(news)
-            }
+            useCase.delete(news)
             view.showToDeleteHistory(news.id, news.title.toEmptyOrString())
         }
         jobList.add(job)

@@ -72,14 +72,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideHackerNewsUseCase(repository: Repository): HackerNewsUseCase {
-        return HackerNewsUseCaseImpl(repository)
+    fun provideHackerNewsUseCase(
+        repository: Repository,
+        ioDispatcher: CoroutineDispatcher
+    ): HackerNewsUseCase {
+        return HackerNewsUseCaseImpl(repository, ioDispatcher)
     }
 
     @Singleton
     @Provides
-    fun provideHistoryUseCase(repository: Repository): HistoryUseCase {
-        return HistoryUseCaseImpl(repository)
+    fun provideHistoryUseCase(
+        repository: Repository,
+        ioDispatcher: CoroutineDispatcher
+    ): HistoryUseCase {
+        return HistoryUseCaseImpl(repository, ioDispatcher)
     }
 
     @Singleton
