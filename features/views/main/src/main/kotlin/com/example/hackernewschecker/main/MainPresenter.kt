@@ -12,8 +12,7 @@ import kotlin.coroutines.CoroutineContext
 class MainPresenter @Inject constructor(
     private val newsUseCase: HackerNewsUseCase,
     private val historyUseCase: HistoryUseCase,
-    private val mainDispatcher: MainCoroutineDispatcher,
-    private val ioDispatcher: CoroutineDispatcher
+    private val mainDispatcher: MainCoroutineDispatcher
 ) :
     MainContract.Presenter,
     CoroutineScope {
@@ -61,9 +60,7 @@ class MainPresenter @Inject constructor(
         launch(exceptionHandler) {
             view.showLoading()
 
-            newsIdList = withContext(ioDispatcher) {
-                newsUseCase.loadCurrentNewsIdList()
-            }
+            newsIdList = newsUseCase.loadCurrentNewsIdList()
 
             if (newsIdList.isEmpty()) {
                 view.hideLoading()
@@ -101,9 +98,7 @@ class MainPresenter @Inject constructor(
     // Hacker News Id にひもづく記事を一つずつ取得して表示する
     private suspend fun loadEachNews(newsIdList: List<Int>, loadNextFirstIndex: Int) {
         newsIdList.forEach { newsId ->
-            val news = withContext(ioDispatcher) {
-                newsUseCase.loadNews(newsId)
-            }
+            val news = newsUseCase.loadNews(newsId)
 
             view.hideLoading()
             view.showNews(news)
@@ -133,8 +128,8 @@ class MainPresenter @Inject constructor(
         }
 
         // 画面遷移しつつ Database に保存する
-        launch(ioDispatcher) {
-            // stop() 時にキャンセルしないため jobList に追加しない
+        // stop() 時にキャンセルしないため jobList に追加しない
+        launch(exceptionHandler) {
             historyUseCase.insert(news)
         }
 
