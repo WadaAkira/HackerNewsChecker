@@ -1,3 +1,7 @@
+# ver1.9（2022/6/26 リリース）
+
+- CoroutineDispatcher を Presenter から UseCase で指定するよう修正
+
 # ver1.8（2022/6/26 リリース）
 
 - targetSdkVersion/compileSdkVersion を 32 に変更
@@ -5,7 +9,7 @@
 - OSS をアップデート
 - minSdkVersion を 29 に変更
 
-# ver1.7（リリース）
+# ver1.7（2022/1/9 リリース）
 
 - Java11 に対応
 - Android Gradle Plugin をバージョンアップ
