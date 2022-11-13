@@ -2,7 +2,7 @@
 
 - AGP をバージョンアップ
 - Gradle をバージョンアップ
-- Kotlin 1.7.10 を導入
+- Kotlin 1.7.20 を導入
 - targetSdkVersion/compileSdkVersion を 33 に変更
 - minSdkVersion を 30 に変更
 - OSS をアップデート
