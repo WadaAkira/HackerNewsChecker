@@ -1,3 +1,12 @@
+# ver1.10（2022/11/13 リリース）
+
+- AGP をバージョンアップ
+- Gradle をバージョンアップ
+- Kotlin 1.7.10 を導入
+- targetSdkVersion/compileSdkVersion を 33 に変更
+- minSdkVersion を 30 に変更
+- OSS をアップデート
+
 # ver1.9（2022/6/26 リリース）
 
 - CoroutineDispatcher を Presenter から UseCase で指定するよう修正
