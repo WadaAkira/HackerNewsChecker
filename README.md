@@ -5,7 +5,7 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ## アプリの動作要件
 
-- Android 10 以上の実機/エミュレータでなければ動作しない
+- Android 11 以上の実機/エミュレータでなければ動作しない
 - デュアルディスプレイ等、複数のディスプレイを持つデバイスへのインストールは想定していない
 - Pad、Android TV、ウェアラブル等、スマートフォーン以外のデバイスへのインストールは想定していない
 
@@ -78,9 +78,9 @@ Wada Akira が Android エンジニアとして、スキルを向上させるた
 
 ## 開発環境
 
-- Mac Montrey 12.4(intel core i5)
-- Android Studio Chipmunk | 2021.2.1 Patch 1
-- kotlin 1.7.0
+- Mac Montrey 12.6.1(intel core i5)
+- Android Studio Dolphin | 2021.3.1 Patch 1
+- kotlin 1.7.20
 
 ## アプリのライセンス
 
